@@ -1,0 +1,94 @@
+# dTAPE优化版本配置
+# 改进点：
+# 1. 增强的mixer网络（更大的embedding维度）
+# 2. 改进的注意力机制
+# 3. 优化的学习率和训练策略
+# 4. 课程学习（逐步增加难度）
+
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 0.995
+epsilon_finish: 0.05
+epsilon_anneal_time: 150000  # 增加探索时间
+
+runner: "episode"
+batch_size_run: 1
+buffer_size: 5000
+
+batch_size: 128
+
+critic_mac: "cate_broadcast_comm_mac_full"
+critic_agent: "rnn_agent_n"
+
+# Comm - 保持通信机制
+comm: True
+comm_embed_dim: 4  # 增加通信embedding维度
+comm_method: "information_bottleneck_full"
+c_beta: 1.
+comm_beta: 0.001
+comm_entropy_beta: 1e-6
+gate_loss_beta: 0.00001
+only_downstream: False
+use_IB: True
+is_print: False
+
+is_comm_beta_decay: False
+comm_beta_start_decay: 20000000
+comm_beta_target: 1e-2
+comm_beta_end_decay: 50000000
+
+is_comm_entropy_beta_decay: False
+comm_entropy_beta_start_decay: 20000000
+comm_entropy_beta_target: 1e-4
+comm_entropy_beta_end_decay: 50000000
+
+is_cur_mu: False
+is_rank_cut_mu: False
+cut_mu_thres: 1.
+cut_mu_rank_thres: 80.0
+
+# update the target network every {} episodes
+target_update_interval: 200
+t_max: 2005000
+
+# use the Q_Learner to train
+mac : "basic_mac_logits"
+agent: "rnn" # Default rnn agent
+agent_output_type: "q"
+learner: "max_q_learner"
+double_q: True
+
+# 改进的Mixer配置
+mixer: "qmix"
+mixing_embed_dim: 64  # 从32增加到64，增强表达能力
+hypernet_layers: 3   # 从2增加到3，更深的网络
+hypernet_embed: 128  # 从64增加到128，更强的特征提取
+
+central_loss: 1
+qmix_loss: 1
+w: 0.6  # 从0.5调整到0.6，平衡central和qmix损失
+hysteretic_qmix: True # OW-QMIX
+
+central_mixing_embed_dim: 512  # 从256增加到512
+central_action_embed: 1
+central_mac: "basic_central_mac"
+central_agent: "central_rnn"
+central_rnn_hidden_dim: 128  # 从64增加到128，更强的RNN隐藏状态
+central_mixer: "ff"
+td_lambda: 0.7  # 从0.6增加到0.7，更重视长期回报
+
+# 优化的学习率
+lr: 0.0008  # 从0.001略微降低，更稳定的训练
+alpha_lr: 2e-4  # 从3e-4降低
+alpha_init: -0.07
+
+p: 0.5
+name: "d_tape_improved_hlsmac"
+
+# 新增：梯度裁剪
+grad_norm_clip: 10
+
+# 新增：奖励塑形（可选）
+reward_scale: True
+reward_scale_rate: 20
+

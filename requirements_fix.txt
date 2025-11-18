@@ -1,0 +1,13 @@
+# Protobuf 版本修复
+# s2clientprotocol 需要 protobuf <= 3.20.x
+# 如果 protobuf 版本 >= 4.0，会导致 TypeError: Descriptors cannot be created directly
+
+protobuf==3.20.3
+
+# 其他依赖（根据实际需要添加）
+# torch>=1.8.0
+# sacred
+# pyyaml
+# numpy
+# pysc2
+
