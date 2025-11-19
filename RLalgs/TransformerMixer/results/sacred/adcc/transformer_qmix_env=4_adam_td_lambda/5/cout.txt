@@ -173,3 +173,12 @@ Sending ResponseJoinGame
   v = th.tensor(v, dtype=dtype, device=self.device)
 [INFO 11:54:53] my_main t_env: 65 / 2005000
 [INFO 11:54:53] my_main Estimated time left: 29 minutes, 24 seconds. Time passed: 8 seconds
+[INFO 11:55:24] my_main Saving models to results/models/transformer_qmix_env=4_adam_td_lambda__2025-11-19_11-54-42/65
+[INFO 11:58:45] my_main t_env: 10126 / 2005000
+[INFO 11:58:45] my_main Estimated time left: 12 hours, 46 minutes, 27 seconds. Time passed: 4 minutes, 0 seconds
+[INFO 11:59:17] my_main Recent Stats | t_env:      10126 | Episode:       83
+battle_won_mean:           0.0000	dead_allies_mean:         15.7500	dead_enemies_mean:         0.0000	delta_ally_mean:         498.2401
+delta_deaths_mean:       -78.7500	delta_enemy_mean:          5.8841	ep_length_mean:           93.8476	epsilon:                   0.9009
+reward_mean:              -4.9878	reward_std:                1.4995	test_battle_won_mean:      0.0000	test_dead_allies_mean:    15.9844
+test_dead_enemies_mean:    0.0000	test_delta_ally_mean:    359.8438	test_delta_deaths_mean:  -79.9219	test_delta_enemy_mean:     5.2344
+test_ep_length_mean:      61.4531	test_reward_mean:         -3.7950	test_reward_std:           1.9980	

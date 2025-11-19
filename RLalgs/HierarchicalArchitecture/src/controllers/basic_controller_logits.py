@@ -47,6 +47,9 @@ class BasicMACLogits:
     def init_hidden(self, batch_size):
         self.hidden_states = self.agent.init_hidden()
         if self.hidden_states is not None:
+            if isinstance(self.hidden_states, tuple):
+                self.hidden_states = tuple(h.unsqueeze(0).expand(batch_size, self.n_agents, -1) for h in self.hidden_states)
+            else:
             self.hidden_states = self.hidden_states.unsqueeze(0).expand(batch_size, self.n_agents, -1)  # bav
 
     def parameters(self):

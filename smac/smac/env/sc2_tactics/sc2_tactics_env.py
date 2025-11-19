@@ -15,6 +15,7 @@ from copy import deepcopy
 import numpy as np
 import enum
 import math
+import os
 from absl import logging
 
 from pysc2 import maps
@@ -308,7 +309,7 @@ class SC2TacticsEnv(MultiAgentEnv):
             _map = maps.get(self.map_name)
         except Exception:
             # Map not in PySC2 registry, use direct file path
-            import os
+            # import os
             from smac.env.sc2_tactics.maps import MAP_NAME_ALIASES
             # Resolve map name alias
             actual_map_name = MAP_NAME_ALIASES.get(self.map_name, self.map_name)
@@ -336,10 +337,31 @@ class SC2TacticsEnv(MultiAgentEnv):
         self._controller = self._sc2_proc.controller
 
         # Request to create the game
+        # Fix map path: remove SMAC_Maps/ prefix if present
+        map_path = _map.path
+        if "SMAC_Maps/" in map_path:
+            # Extract just the filename
+            map_filename = os.path.basename(map_path)
+            # Resolve alias if needed
+            from smac.env.sc2_tactics.maps import MAP_NAME_ALIASES
+            base_name = map_filename.replace(".SC2Map", "")
+            actual_map_name = MAP_NAME_ALIASES.get(base_name, base_name)
+            if not actual_map_name.endswith("_te") and not base_name.endswith("_te"):
+                actual_map_name = f"{actual_map_name}_te"
+            map_filename = f"{actual_map_name}.SC2Map"
+            map_path = os.path.join(os.environ.get("SC2PATH", ""), "Maps", map_filename)
+        
+        # Ensure map_path is absolute and exists
+        if not os.path.isabs(map_path):
+            map_path = os.path.join(os.environ.get("SC2PATH", ""), "Maps", os.path.basename(map_path))
+        
+        if not os.path.exists(map_path):
+            raise FileNotFoundError(f"Map file not found: {map_path}")
+        
         create = sc_pb.RequestCreateGame(
             local_map=sc_pb.LocalMap(
-                map_path=_map.path,
-                map_data=self._run_config.map_data(_map.path),
+                map_path=map_path,
+                map_data=self._run_config.map_data(map_path),
             ),
             realtime=False,
             random_seed=self._seed,

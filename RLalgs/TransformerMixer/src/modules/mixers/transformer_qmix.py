@@ -158,8 +158,9 @@ class TransformerQMixer(nn.Module):
         if len(states.shape) == 4:
             # dropout模式: [bs, seq_len, n_agents, state_dim]
             bs, seq_len, n_agents_state, state_dim = states.shape
-            # 取第一个智能体的状态用于编码（所有智能体共享相同状态）
-            states_for_encoding = states[:, :, 0, :]  # [bs, seq_len, state_dim]
+            states = states.permute(0, 2, 1, 3).reshape(bs * n_agents_state, seq_len, state_dim)
+            bs = bs * n_agents_state
+            states_for_encoding = states
         else:
             # 正常模式: [bs, seq_len, state_dim]
             bs = states.size(0)

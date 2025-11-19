@@ -1,0 +1,285 @@
+{
+  "alpha": [
+    0.9323005676269531
+  ],
+  "alpha_T": [
+    7941
+  ],
+  "alpha_loss": [
+    -6.828069686889648
+  ],
+  "alpha_loss_T": [
+    7941
+  ],
+  "battle_won_mean": [
+    0.0,
+    0.0
+  ],
+  "battle_won_mean_T": [
+    64,
+    10121
+  ],
+  "central_loss": [
+    0.031019898131489754
+  ],
+  "central_loss_T": [
+    7941
+  ],
+  "comm_loss": [
+    0.29567983746528625
+  ],
+  "comm_loss_T": [
+    7941
+  ],
+  "dead_allies_mean": [
+    5.0,
+    5.012422360248447
+  ],
+  "dead_allies_mean_T": [
+    64,
+    10121
+  ],
+  "dead_enemies_mean": [
+    0.0,
+    0.10559006211180125
+  ],
+  "dead_enemies_mean_T": [
+    64,
+    10121
+  ],
+  "delta_ally_mean": [
+    335.0,
+    337.51358695652175
+  ],
+  "delta_ally_mean_T": [
+    64,
+    10121
+  ],
+  "delta_deaths_mean": [
+    -25.0,
+    -23.975155279503106
+  ],
+  "delta_deaths_mean_T": [
+    64,
+    10121
+  ],
+  "delta_enemy_mean": [
+    160.375,
+    269.4976708074534
+  ],
+  "delta_enemy_mean_T": [
+    64,
+    10121
+  ],
+  "ep_length_mean": [
+    64.0,
+    62.46583850931677
+  ],
+  "ep_length_mean_T": [
+    64,
+    10121
+  ],
+  "episode": [
+    161
+  ],
+  "episode_T": [
+    10057
+  ],
+  "epsilon": [
+    0.995,
+    0.89996135
+  ],
+  "epsilon_T": [
+    64,
+    10121
+  ],
+  "grad_norm": [
+    {
+      "py/reduce": [
+        {
+          "py/function": "torch._utils._rebuild_tensor_v2"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/function": "torch.storage._load_from_bytes"
+                },
+                {
+                  "py/tuple": [
+                    {
+                      "py/b64": "gAKKCmz8nEb5IGqoUBkugAJN6QMugAJ9cQAoWBAAAABwcm90b2NvbF92ZXJzaW9ucQFN6QNYDQAAAGxpdHRsZV9lbmRpYW5xAohYCgAAAHR5cGVfc2l6ZXNxA31xBChYBQAAAHNob3J0cQVLAlgDAAAAaW50cQZLBFgEAAAAbG9uZ3EHSwR1dS6AAihYBwAAAHN0b3JhZ2VxAGN0b3JjaApGbG9hdFN0b3JhZ2UKcQFYDgAAADk0MTgyNTI1NDc2MDY0cQJYBgAAAGN1ZGE6MHEDSwFOdHEEUS6AAl1xAFgOAAAAOTQxODI1MjU0NzYwNjRxAWEuAQAAAAAAAADJrsM+"
+                    }
+                  ]
+                }
+              ]
+            },
+            0,
+            {
+              "py/tuple": []
+            },
+            {
+              "py/tuple": []
+            },
+            false,
+            {
+              "py/reduce": [
+                {
+                  "py/type": "collections.OrderedDict"
+                },
+                {
+                  "py/tuple": []
+                },
+                null,
+                null,
+                {
+                  "py/tuple": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "grad_norm_T": [
+    7941
+  ],
+  "loss": [
+    0.37293174862861633
+  ],
+  "loss_T": [
+    7941
+  ],
+  "mixer_norm": [
+    0.28238720240100335
+  ],
+  "mixer_norm_T": [
+    7941
+  ],
+  "policy_loss": [
+    0.08967379480600357
+  ],
+  "policy_loss_T": [
+    7941
+  ],
+  "q_taken_mean": [
+    0.011196139303513587
+  ],
+  "q_taken_mean_T": [
+    7941
+  ],
+  "qmix_loss": [
+    0.04623200744390488
+  ],
+  "qmix_loss_T": [
+    7941
+  ],
+  "reward_mean": [
+    -3.731308411214954,
+    -1.7194592790387182
+  ],
+  "reward_mean_T": [
+    64,
+    10121
+  ],
+  "reward_std": [
+    0.0,
+    1.2916178875310187
+  ],
+  "reward_std_T": [
+    64,
+    10121
+  ],
+  "target_mean": [
+    0.010537683132284627
+  ],
+  "target_mean_T": [
+    7941
+  ],
+  "td_error_abs": [
+    0.1964797080126086
+  ],
+  "td_error_abs_T": [
+    7941
+  ],
+  "test_battle_won_mean": [
+    0.0,
+    0.0
+  ],
+  "test_battle_won_mean_T": [
+    64,
+    10121
+  ],
+  "test_dead_allies_mean": [
+    5.0,
+    5.1875
+  ],
+  "test_dead_allies_mean_T": [
+    64,
+    10121
+  ],
+  "test_dead_enemies_mean": [
+    0.0,
+    1.09375
+  ],
+  "test_dead_enemies_mean_T": [
+    64,
+    10121
+  ],
+  "test_delta_ally_mean": [
+    341.953125,
+    335.0
+  ],
+  "test_delta_ally_mean_T": [
+    64,
+    10121
+  ],
+  "test_delta_deaths_mean": [
+    -25.0,
+    -14.0625
+  ],
+  "test_delta_deaths_mean_T": [
+    64,
+    10121
+  ],
+  "test_delta_enemy_mean": [
+    29.5,
+    313.04296875
+  ],
+  "test_delta_enemy_mean_T": [
+    64,
+    10121
+  ],
+  "test_ep_length_mean": [
+    77.65625,
+    66.5625
+  ],
+  "test_ep_length_mean_T": [
+    64,
+    10121
+  ],
+  "test_reward_mean": [
+    -6.307535046728971,
+    -0.6732622663551401
+  ],
+  "test_reward_mean_T": [
+    64,
+    10121
+  ],
+  "test_reward_std": [
+    0.7690327814749507,
+    1.495635111451144
+  ],
+  "test_reward_std_T": [
+    64,
+    10121
+  ],
+  "w_to_use": [
+    0.6993566155433655
+  ],
+  "w_to_use_T": [
+    7941
+  ]
+}

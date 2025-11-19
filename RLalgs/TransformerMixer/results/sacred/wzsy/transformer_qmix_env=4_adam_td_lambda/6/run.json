@@ -1,0 +1,169 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "pyyaml==6.0.3",
+      "sacred==0.8.7",
+      "torch==2.1.2+cu118"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "f80ceae27618ec8767c7ab12d6e9ac32fb88b02e",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "f80ceae27618ec8767c7ab12d6e9ac32fb88b02e",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_3992b8ec14bf1a440a6c16ee0a45870f.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_b39327ec521d5576c7ca6fe2250525d5.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/run/run.py\", line 54, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/run/run.py\", line 197, in run_sequential\n    learner.train(episode_sample, runner.t_env, episode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/learners/max_q_learner.py\", line 218, in train\n    Q_i_mean_negi_mean = self.mixer(q_i_mean_negi_mean.view(-1, self.n_agents, 1), batch[\"state\"],dropout=True).view(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],self.n_agents)[:,:-1]\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/modules/mixers/transformer_qmix.py\", line 191, in forward\n    transformer_out = layer(transformer_out)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/modules/mixers/transformer_qmix.py\", line 79, in forward\n    ff_output = self.feed_forward(x)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/container.py\", line 215, in forward\n    input = module(input)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/dropout.py\", line 58, in forward\n    return F.dropout(input, self.p, self.training, self.inplace)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/functional.py\", line 1266, in dropout\n    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)\n",
+    "torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 3.53 GiB. GPU 0 has a total capacty of 79.11 GiB of which 889.75 MiB is free. Process 591833 has 24.58 GiB memory in use. Process 596211 has 944.00 MiB memory in use. Process 597002 has 44.77 GiB memory in use. Process 691439 has 738.00 MiB memory in use. Process 691844 has 2.12 GiB memory in use. Process 692516 has 718.00 MiB memory in use. Process 692858 has 750.00 MiB memory in use. Process 693162 has 716.00 MiB memory in use. Process 695803 has 754.00 MiB memory in use. Process 696117 has 736.00 MiB memory in use. Process 696527 has 744.00 MiB memory in use. Process 696818 has 750.00 MiB memory in use. Of the allocated memory 43.25 GiB is allocated by PyTorch, and 697.91 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF\n"
+  ],
+  "heartbeat": "2025-11-19T05:54:07.693007",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.19"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "wzsy"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=wzsy",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-11-19T05:39:38.042998",
+  "status": "FAILED",
+  "stop_time": "2025-11-19T05:54:07.705000"
+}

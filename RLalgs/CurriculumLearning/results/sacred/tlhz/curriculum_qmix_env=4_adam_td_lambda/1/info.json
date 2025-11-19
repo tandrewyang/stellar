@@ -1,0 +1,381 @@
+{
+  "alpha": [
+    0.9323005676269531
+  ],
+  "alpha_T": [
+    38400
+  ],
+  "alpha_loss": [
+    -10.673733711242676
+  ],
+  "alpha_loss_T": [
+    38400
+  ],
+  "battle_won_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "battle_won_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "central_loss": [
+    0.0044517251662909985
+  ],
+  "central_loss_T": [
+    38400
+  ],
+  "comm_loss": [
+    0.34703582525253296
+  ],
+  "comm_loss_T": [
+    38400
+  ],
+  "curriculum/difficulty": [
+    0.0384,
+    0.0387
+  ],
+  "curriculum/difficulty_T": [
+    38400,
+    38700
+  ],
+  "curriculum/progress": [
+    0.0384,
+    0.0387
+  ],
+  "curriculum/progress_T": [
+    38400,
+    38700
+  ],
+  "dead_allies_mean": [
+    4.0,
+    3.8823529411764706,
+    3.3823529411764706,
+    3.176470588235294
+  ],
+  "dead_allies_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "dead_enemies_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "dead_enemies_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "delta_ally_mean": [
+    20.0,
+    14.411269244025736,
+    2.6810589958639706,
+    -1.3604305491727942
+  ],
+  "delta_ally_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "delta_deaths_mean": [
+    -5.0,
+    -4.411764705882353,
+    -1.911764705882353,
+    -0.8823529411764706
+  ],
+  "delta_deaths_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "delta_enemy_mean": [
+    -269.6875,
+    -264.20947265625,
+    -264.20947265625,
+    -264.20947265625
+  ],
+  "delta_enemy_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "ep_length_mean": [
+    300.0,
+    300.0,
+    300.0,
+    300.0
+  ],
+  "ep_length_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "episode": [
+    34,
+    68,
+    102
+  ],
+  "episode_T": [
+    10200,
+    20400,
+    30600
+  ],
+  "epsilon": [
+    0.995,
+    0.89861,
+    0.80222,
+    0.70583
+  ],
+  "epsilon_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "grad_norm": [
+    {
+      "py/reduce": [
+        {
+          "py/function": "torch._utils._rebuild_tensor_v2"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/function": "torch.storage._load_from_bytes"
+                },
+                {
+                  "py/tuple": [
+                    {
+                      "py/b64": "gAKKCmz8nEb5IGqoUBkugAJN6QMugAJ9cQAoWBAAAABwcm90b2NvbF92ZXJzaW9ucQFN6QNYDQAAAGxpdHRsZV9lbmRpYW5xAohYCgAAAHR5cGVfc2l6ZXNxA31xBChYBQAAAHNob3J0cQVLAlgDAAAAaW50cQZLBFgEAAAAbG9uZ3EHSwR1dS6AAihYBwAAAHN0b3JhZ2VxAGN0b3JjaApGbG9hdFN0b3JhZ2UKcQFYDgAAADk0OTA4MDQ0NzI0MjI0cQJYBgAAAGN1ZGE6MHEDSwFOdHEEUS6AAl1xAFgOAAAAOTQ5MDgwNDQ3MjQyMjRxAWEuAQAAAAAAAABfnMM+"
+                    }
+                  ]
+                }
+              ]
+            },
+            0,
+            {
+              "py/tuple": []
+            },
+            {
+              "py/tuple": []
+            },
+            false,
+            {
+              "py/reduce": [
+                {
+                  "py/type": "collections.OrderedDict"
+                },
+                {
+                  "py/tuple": []
+                },
+                null,
+                null,
+                {
+                  "py/tuple": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "grad_norm_T": [
+    38400
+  ],
+  "loss": [
+    0.3686021864414215
+  ],
+  "loss_T": [
+    38400
+  ],
+  "mixer_norm": [
+    0.29025583249759596
+  ],
+  "mixer_norm_T": [
+    38400
+  ],
+  "policy_loss": [
+    -0.5606450438499451
+  ],
+  "policy_loss_T": [
+    38400
+  ],
+  "q_taken_mean": [
+    -0.003976529041926066
+  ],
+  "q_taken_mean_T": [
+    38400
+  ],
+  "qmix_loss": [
+    0.017114639282226562
+  ],
+  "qmix_loss_T": [
+    38400
+  ],
+  "reward_mean": [
+    -6.406250000000006,
+    -6.152880578394744,
+    -5.843528181695574,
+    -5.73329119670117
+  ],
+  "reward_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "reward_std": [
+    0.0,
+    0.19673914119687258,
+    0.30567253066854194,
+    0.26313264825568833
+  ],
+  "reward_std_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "target_mean": [
+    -0.007671816349029541
+  ],
+  "target_mean_T": [
+    38400
+  ],
+  "td_error_abs": [
+    0.12730918884277342
+  ],
+  "td_error_abs_T": [
+    38400
+  ],
+  "test_battle_won_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_battle_won_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_dead_allies_mean": [
+    3.0,
+    3.0,
+    3.0,
+    2.90625
+  ],
+  "test_dead_allies_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_dead_enemies_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_dead_enemies_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_delta_ally_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_delta_ally_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_delta_deaths_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_delta_deaths_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_delta_enemy_mean": [
+    -264.20947265625,
+    -264.20947265625,
+    -264.20947265625,
+    -261.8523406982422
+  ],
+  "test_delta_enemy_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_ep_length_mean": [
+    300.0,
+    300.0,
+    300.0,
+    292.4375
+  ],
+  "test_ep_length_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_reward_mean": [
+    -5.743684188179354,
+    -5.743684188179354,
+    -5.743684188179354,
+    -5.692442189092228
+  ],
+  "test_reward_mean_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "test_reward_std": [
+    0.0,
+    0.0,
+    0.0,
+    0.28366256079813656
+  ],
+  "test_reward_std_T": [
+    300,
+    10500,
+    20700,
+    30900
+  ],
+  "w_to_use": [
+    0.7134374976158142
+  ],
+  "w_to_use_T": [
+    38400
+  ]
+}

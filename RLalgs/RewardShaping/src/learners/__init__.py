@@ -3,7 +3,7 @@ from learners.reward_shaping_learner import RewardShapingLearner
 
 REGISTRY = {}
 
-from learners.coma_learner import COMA
+from learners.coma_learner import COMALearner as COMA
 from learners.qtran_learner import QLearner as QTranLearner
 from learners.offpg_learner import OffPGCritic
 from learners.ppo_learner import PPOLearner
@@ -12,7 +12,7 @@ from learners.dmaq_qatten_learner import DMAQ_qattenLearner
 from learners.fmac_learner import FMACLearner
 from learners.lica_learner import LICALearner
 from learners.nq_learner import NQLearner
-from learners.policy_gradient_v2 import PolicyGradientLearner
+from learners.policy_gradient_v2 import PGLearner_v2 as PolicyGradientLearner
 
 REGISTRY["q_learner"] = QLearner
 REGISTRY["coma"] = COMA

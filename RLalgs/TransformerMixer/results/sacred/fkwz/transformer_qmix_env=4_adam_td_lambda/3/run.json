@@ -34,7 +34,19 @@
       ]
     ]
   },
-  "heartbeat": "2025-11-19T03:55:08.628089",
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/run/run.py\", line 54, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/run/run.py\", line 197, in run_sequential\n    learner.train(episode_sample, runner.t_env, episode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/learners/max_q_learner.py\", line 218, in train\n    Q_i_mean_negi_mean = self.mixer(q_i_mean_negi_mean.view(-1, self.n_agents, 1), batch[\"state\"],dropout=True).view(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],self.n_agents)[:,:-1]\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/modules/mixers/transformer_qmix.py\", line 157, in forward\n    # \u83b7\u53d6\u5b9e\u9645batch size\u548cseq_len\n",
+    "RuntimeError: shape '[282240, 9, 64]' is invalid for input of size 2007040\n"
+  ],
+  "heartbeat": "2025-11-19T03:58:44.366931",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Xeon(R) Platinum 8468",
@@ -142,5 +154,6 @@
   "resources": [],
   "result": null,
   "start_time": "2025-11-19T03:49:18.148659",
-  "status": "RUNNING"
+  "status": "FAILED",
+  "stop_time": "2025-11-19T03:58:44.375745"
 }

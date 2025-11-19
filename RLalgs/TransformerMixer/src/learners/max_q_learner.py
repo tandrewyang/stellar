@@ -92,6 +92,41 @@ class MAXQLearner:
         self.mixer_norm = 1
         self.mixer_norms = deque([1], maxlen=100)
 
+    def _chunked_mixer_dropout(self, q_input, states, chunk_size=128):
+        # q_input: [bs, seq_len, n_agents, n_agents]
+        # states: [bs, seq_len, state_dim]
+        
+        bs, seq_len, n_agents, _ = q_input.shape
+        
+        # Prepare q_input: [bs, n_agents, seq_len, n_agents] -> [bs*n_agents, seq_len, n_agents]
+        q_permuted = q_input.permute(0, 3, 1, 2).reshape(bs * n_agents, seq_len, n_agents)
+        q_permuted = q_permuted.unsqueeze(-1) # [bs*n_agents, seq_len, n_agents, 1]
+        
+        # Prepare states: [bs, n_agents, seq_len, state_dim] -> [bs*n_agents, seq_len, state_dim]
+        # Expand states: [bs, seq_len, state_dim] -> [bs, 1, seq_len, state_dim] -> [bs, n_agents, seq_len, state_dim]
+        s_expanded = states.unsqueeze(1).repeat(1, n_agents, 1, 1)
+        s_permuted = s_expanded.reshape(bs * n_agents, seq_len, -1)
+        
+        outputs = []
+        total_items = bs * n_agents
+        
+        for i in range(0, total_items, chunk_size):
+            slice_idx = slice(i, min(i + chunk_size, total_items))
+            
+            q_chunk = q_permuted[slice_idx].reshape(-1, n_agents, 1)
+            s_chunk = s_permuted[slice_idx]
+            
+            out_chunk = self.mixer(q_chunk, s_chunk, dropout=False)
+            outputs.append(out_chunk)
+            
+        # Output: [bs*n_agents, seq_len, 1]
+        res = th.cat(outputs, dim=0)
+        
+        # Restore shape [bs, seq_len, n_agents]
+        # res: [bs*n_agents, seq_len, 1] -> [bs, n_agents, seq_len, 1] -> [bs, seq_len, n_agents]
+        res = res.view(bs, n_agents, seq_len).permute(0, 2, 1)
+        return res.unsqueeze(-1)
+
     def train(self, batch: EpisodeBatch, t_env: int, episode_num: int):
         # Get the relevant quantities
         rewards = batch["reward"][:, :-1]
@@ -206,17 +241,27 @@ class MAXQLearner:
         masked_td_error = td_error * mask
 
         # ActorLoss
-        q_i_mean_negi_mean = th.sum(mac_out * (self.alpha * actions_logprobs - critic_mac_out), dim=-1)  # (1,60,3) # TODO
+        q_i_mean_negi_mean = th.sum(mac_out * (self.alpha * actions_logprobs - critic_mac_out), dim=-1)  # (bs, seq_len, n_agents)
         
-        q_i_mean_negi_mean=q_i_mean_negi_mean.view(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],1,self.n_agents).repeat(1,1,self.n_agents,1)
+        # Expand to [bs, seq_len, n_agents, n_agents]
+        q_i_mean_negi_mean=q_i_mean_negi_mean.unsqueeze(-1).repeat(1,1,1,self.n_agents)
+        
         A=th.FloatTensor([[1 if np.random.uniform()<self.args.p else 0 for _ in range(self.n_agents)]for _ in range(self.n_agents)])
         for i in range(self.n_agents):
             A[i,i]=1.0
-        dropout=A.reshape(1,1,A.shape[0],-1).repeat(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],1,1).cuda()
+        dropout=A.reshape(1,1,A.shape[0],-1).repeat(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],1,1).to(q_i_mean_negi_mean.device)
         q_i_mean_negi_mean*=dropout
         
-        Q_i_mean_negi_mean = self.mixer(q_i_mean_negi_mean.view(-1, self.n_agents, 1), batch["state"],dropout=True).view(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],self.n_agents)[:,:-1]
-        policy_loss = (Q_i_mean_negi_mean * mask.repeat(1,1,self.n_agents)).sum() / mask.repeat(1,1,self.n_agents).sum()
+        # Use chunked mixer processing to save memory
+        # q_i_mean_negi_mean is [bs, seq_len, n_agents, n_agents]
+        Q_i_mean_negi_mean = self._chunked_mixer_dropout(q_i_mean_negi_mean, batch["state"], chunk_size=32) # Reduced chunk size
+        # Result is [bs, seq_len, n_agents, 1]
+        Q_i_mean_negi_mean = Q_i_mean_negi_mean.squeeze(-1)[:, :-1]
+        
+        # Compute policy loss in chunks or with reduced precision if possible
+        # Here we just make sure not to create too many intermediate tensors
+        mask_expanded = mask.repeat(1,1,self.n_agents)
+        policy_loss = (Q_i_mean_negi_mean * mask_expanded).sum() / mask_expanded.sum()
 
         target_entropy = -1. * self.args.n_actions
         # Training central Q

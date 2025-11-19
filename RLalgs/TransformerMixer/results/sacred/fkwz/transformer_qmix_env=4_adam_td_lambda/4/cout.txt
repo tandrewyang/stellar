@@ -169,3 +169,25 @@ Sending ResponseJoinGame
 {'warpgate': 133, 'pylon': 60, 'zealot': 73, 'warpPrism': 81, 'warpPrismPhasing': 136}
 /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/components/episode_buffer.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:261.)
   v = th.tensor(v, dtype=dtype, device=self.device)
+/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TransformerMixer/src/components/episode_buffer.py:103: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 11:55:04] my_main t_env: 235 / 2005000
+[INFO 11:55:04] my_main Estimated time left: 31 minutes, 3 seconds. Time passed: 9 seconds
+cannot find a valid point for unit type 136
+[INFO 11:56:35] my_main Saving models to results/models/transformer_qmix_env=4_adam_td_lambda__2025-11-19_11-54-53/235
+[INFO 11:59:56] my_main Recent Stats | t_env:      10219 | Episode:       58
+battle_won_mean:           0.0000	dead_allies_mean:          5.0000	dead_enemies_mean:         1.0000	delta_ally_mean:         682.2188
+delta_deaths_mean:       -15.0000	delta_enemy_mean:        -739.8438	ep_length_mean:          235.0000	epsilon:                   0.9950
+reward_mean:              -9.1825	reward_std:                0.0000	test_battle_won_mean:      0.0000	test_dead_allies_mean:     2.1875
+test_dead_enemies_mean:    0.0312	test_delta_ally_mean:    566.3513	test_delta_deaths_mean:  -10.6250	test_delta_enemy_mean:   -893.9785
+test_ep_length_mean:     203.9688	test_reward_mean:         -9.3991	test_reward_std:           0.4180	
+[INFO 11:59:59] my_main t_env: 10436 / 2005000
+[INFO 11:59:59] my_main Estimated time left: 15 hours, 59 minutes, 54 seconds. Time passed: 5 minutes, 4 seconds
+[INFO 12:02:58] my_main Recent Stats | t_env:      20400 | Episode:      108
+battle_won_mean:           0.0000	dead_allies_mean:          3.0690	dead_enemies_mean:         0.0690	delta_ally_mean:         367.3640
+delta_deaths_mean:       -14.6552	delta_enemy_mean:        -781.2573	ep_length_mean:          175.8793	epsilon:                   0.8984
+reward_mean:              -7.4331	reward_std:                2.9699	test_battle_won_mean:      0.0000	test_dead_allies_mean:     2.3750
+test_dead_enemies_mean:    0.0000	test_delta_ally_mean:    575.4944	test_delta_deaths_mean:  -11.8750	test_delta_enemy_mean:   -898.9785
+test_ep_length_mean:     204.8750	test_reward_mean:         -9.4974	test_reward_std:           0.4403	
+[INFO 12:03:00] my_main t_env: 20614 / 2005000
+[INFO 12:03:00] my_main Estimated time left: 9 hours, 47 minutes, 52 seconds. Time passed: 8 minutes, 4 seconds

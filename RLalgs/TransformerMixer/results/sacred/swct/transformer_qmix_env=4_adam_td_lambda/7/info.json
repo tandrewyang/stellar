@@ -1,0 +1,478 @@
+{
+  "alpha": [
+    0.9323005676269531,
+    0.9276604056358337
+  ],
+  "alpha_T": [
+    25481,
+    35481
+  ],
+  "alpha_loss": [
+    -6.843268871307373,
+    -6.764933109283447
+  ],
+  "alpha_loss_T": [
+    25481,
+    35481
+  ],
+  "battle_won_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "battle_won_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "central_loss": [
+    0.000692789675667882,
+    0.00016579296789132059
+  ],
+  "central_loss_T": [
+    25481,
+    35481
+  ],
+  "comm_loss": [
+    0.14914914965629578,
+    0.044597990810871124
+  ],
+  "comm_loss_T": [
+    25481,
+    35481
+  ],
+  "dead_allies_mean": [
+    0.0,
+    0.49019607843137253,
+    0.7254901960784313,
+    0.16,
+    0.0
+  ],
+  "dead_allies_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "dead_enemies_mean": [
+    0.0,
+    0.0392156862745098,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "dead_enemies_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "delta_ally_mean": [
+    0.0,
+    20.01593137254902,
+    29.621323529411764,
+    6.6525,
+    0.0
+  ],
+  "delta_ally_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "delta_deaths_mean": [
+    0.0,
+    -2.0588235294117645,
+    -3.627450980392157,
+    -0.8,
+    0.0
+  ],
+  "delta_deaths_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "delta_enemy_mean": [
+    0.0,
+    6.3001685049019605,
+    6.5809302236519605,
+    0.502099609375,
+    0.0
+  ],
+  "delta_enemy_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "ep_length_mean": [
+    200.0,
+    198.52941176470588,
+    199.13725490196077,
+    200.0,
+    199.49019607843138
+  ],
+  "ep_length_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "episode": [
+    51,
+    102,
+    152,
+    203
+  ],
+  "episode_T": [
+    10125,
+    20281,
+    30281,
+    40455
+  ],
+  "epsilon": [
+    0.995,
+    0.89931875,
+    0.80334455,
+    0.70884455,
+    0.6127002500000001
+  ],
+  "epsilon_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "grad_norm": [
+    {
+      "py/reduce": [
+        {
+          "py/function": "torch._utils._rebuild_tensor_v2"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/function": "torch.storage._load_from_bytes"
+                },
+                {
+                  "py/tuple": [
+                    {
+                      "py/b64": "gAKKCmz8nEb5IGqoUBkugAJN6QMugAJ9cQAoWBAAAABwcm90b2NvbF92ZXJzaW9ucQFN6QNYDQAAAGxpdHRsZV9lbmRpYW5xAohYCgAAAHR5cGVfc2l6ZXNxA31xBChYBQAAAHNob3J0cQVLAlgDAAAAaW50cQZLBFgEAAAAbG9uZ3EHSwR1dS6AAihYBwAAAHN0b3JhZ2VxAGN0b3JjaApGbG9hdFN0b3JhZ2UKcQFYDgAAADkzOTAwNzk3MTAxMjE2cQJYBgAAAGN1ZGE6MHEDSwFOdHEEUS6AAl1xAFgOAAAAOTM5MDA3OTcxMDEyMTZxAWEuAQAAAAAAAAA0Bk09"
+                    }
+                  ]
+                }
+              ]
+            },
+            0,
+            {
+              "py/tuple": []
+            },
+            {
+              "py/tuple": []
+            },
+            false,
+            {
+              "py/reduce": [
+                {
+                  "py/type": "collections.OrderedDict"
+                },
+                {
+                  "py/tuple": []
+                },
+                null,
+                null,
+                {
+                  "py/tuple": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "py/reduce": [
+        {
+          "py/function": "torch._utils._rebuild_tensor_v2"
+        },
+        {
+          "py/tuple": [
+            {
+              "py/reduce": [
+                {
+                  "py/function": "torch.storage._load_from_bytes"
+                },
+                {
+                  "py/tuple": [
+                    {
+                      "py/b64": "gAKKCmz8nEb5IGqoUBkugAJN6QMugAJ9cQAoWBAAAABwcm90b2NvbF92ZXJzaW9ucQFN6QNYDQAAAGxpdHRsZV9lbmRpYW5xAohYCgAAAHR5cGVfc2l6ZXNxA31xBChYBQAAAHNob3J0cQVLAlgDAAAAaW50cQZLBFgEAAAAbG9uZ3EHSwR1dS6AAihYBwAAAHN0b3JhZ2VxAGN0b3JjaApGbG9hdFN0b3JhZ2UKcQFYDgAAADkzOTAwODE0MDM1ODcycQJYBgAAAGN1ZGE6MHEDSwFOdHEEUS6AAl1xAFgOAAAAOTM5MDA4MTQwMzU4NzJxAWEuAQAAAAAAAAAQ25M8"
+                    }
+                  ]
+                }
+              ]
+            },
+            0,
+            {
+              "py/tuple": []
+            },
+            {
+              "py/tuple": []
+            },
+            false,
+            {
+              "py/reduce": [
+                {
+                  "py/type": "collections.OrderedDict"
+                },
+                {
+                  "py/tuple": []
+                },
+                null,
+                null,
+                {
+                  "py/tuple": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "grad_norm_T": [
+    25481,
+    35481
+  ],
+  "loss": [
+    0.1505502313375473,
+    0.045052289962768555
+  ],
+  "loss_T": [
+    25481,
+    35481
+  ],
+  "mixer_norm": [
+    0.03154724679915357,
+    0.002264777924799606
+  ],
+  "mixer_norm_T": [
+    25481,
+    35481
+  ],
+  "policy_loss": [
+    0.016473736613988876,
+    0.012702633626759052
+  ],
+  "policy_loss_T": [
+    25481,
+    35481
+  ],
+  "q_taken_mean": [
+    0.00597398628512421,
+    0.0034056074869154014
+  ],
+  "q_taken_mean_T": [
+    25481,
+    35481
+  ],
+  "qmix_loss": [
+    0.0007082959054969251,
+    0.0002885069407057017
+  ],
+  "qmix_loss_T": [
+    25481,
+    35481
+  ],
+  "reward_mean": [
+    0.0,
+    -0.026770617559709473,
+    -0.04525726650174284,
+    -0.011795333713406868,
+    -2.5510639352600104e-20
+  ],
+  "reward_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "reward_std": [
+    0.0,
+    0.052997257787423556,
+    0.0728510355648613,
+    0.03323888840162594,
+    1.8038746078627936e-19
+  ],
+  "reward_std_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "target_mean": [
+    0.002818287381253434,
+    0.0021550032328905484
+  ],
+  "target_mean_T": [
+    25481,
+    35481
+  ],
+  "td_error_abs": [
+    0.028033271688647915,
+    0.01694118936895507
+  ],
+  "td_error_abs_T": [
+    25481,
+    35481
+  ],
+  "test_battle_won_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_battle_won_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_dead_allies_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_dead_allies_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_dead_enemies_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_dead_enemies_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_delta_ally_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_delta_ally_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_delta_deaths_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_delta_deaths_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_delta_enemy_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_delta_enemy_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_ep_length_mean": [
+    200.0,
+    200.0,
+    200.0,
+    200.0,
+    200.0
+  ],
+  "test_ep_length_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_reward_mean": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_reward_mean_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "test_reward_std": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "test_reward_std_T": [
+    200,
+    10325,
+    20481,
+    30481,
+    40655
+  ],
+  "w_to_use": [
+    0.6396288871765137,
+    0.6907421946525574
+  ],
+  "w_to_use_T": [
+    25481,
+    35481
+  ]
+}

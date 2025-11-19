@@ -100,6 +100,9 @@ class CurriculumLearner(MAXQLearner):
         # 应用课程学习到batch
         batch = self.apply_curriculum_to_batch(batch)
         
+        # 记录课程信息
+        self.log_curriculum_info(t_env)
+        
         # 调用父类的train方法
         return super(CurriculumLearner, self).train(batch, t_env, episode_num)
     

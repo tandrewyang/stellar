@@ -134,6 +134,9 @@ class RewardShapingLearner(MAXQLearner):
             # 更新batch中的奖励
             batch.data.transition_data["reward"][:, :-1] = shaped_rewards
         
+            # 记录奖励塑形信息
+            self.log_shaping_info(t_env)
+        
         # 调用父类的train方法
         return super(RewardShapingLearner, self).train(batch, t_env, episode_num)
     
