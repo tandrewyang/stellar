@@ -23,9 +23,9 @@ class CateBCommFMAC:
 		print(input_shape)
 
 		self._build_agents(input_shape)
-		self.agent_output_type = args.agent_output_type
+		self.agent_output_type = getattr(args, 'agent_output_type', 'q')
 
-		self.action_selector = action_REGISTRY[args.action_selector](args)
+		self.action_selector = action_REGISTRY[getattr(args, 'action_selector', 'epsilon_greedy')](args)
 
 		self.hidden_states = None
 

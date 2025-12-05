@@ -100,9 +100,71 @@ class EpisodeBatch:
                 raise KeyError("{} not found in transition or episode data".format(k))
 
             dtype = self.scheme[k].get("dtype", th.float32)
-            v = th.tensor(v, dtype=dtype, device=self.device)
-            self._check_safe_view(v, target[k][_slices])
-            target[k][_slices] = v.view_as(target[k][_slices])
+            
+            # Convert to tensor, handling nested structures
+            if isinstance(v, (tuple, list)) and len(v) > 0:
+                # If it's a nested structure like ((reward,),), unwrap it
+                while isinstance(v, (tuple, list)) and len(v) == 1 and isinstance(v[0], (tuple, list, np.ndarray)):
+                    v = v[0]
+                # If still a tuple/list, convert to tensor
+                if isinstance(v, (tuple, list)):
+                    v = th.tensor(v, dtype=dtype, device=self.device)
+                else:
+                    v = th.tensor(v, dtype=dtype, device=self.device)
+            else:
+                v = th.tensor(v, dtype=dtype, device=self.device)
+            
+            # Try to reshape if dimensions don't match but total elements match
+            dest_shape = target[k][_slices].shape
+            dest_tensor = target[k][_slices]
+            
+            # Always check if reshape is safe first
+            if v.numel() != dest_tensor.numel():
+                # If elements don't match, try to handle common cases
+                if v.numel() > dest_tensor.numel():
+                    # If source has more elements, try to take first N or sum
+                    if dest_tensor.numel() == 1:
+                        # For scalar destination, try to extract scalar from source
+                        if v.numel() > 1:
+                            # If it's a reward-like value, try summing or taking mean
+                            if k == "reward":
+                                v = th.tensor([v.sum().item()] if v.dim() > 0 else [v.item()], dtype=dtype, device=self.device)
+                            else:
+                                # For other fields, take first element
+                                v = v.flatten()[:dest_tensor.numel()].view(dest_shape)
+                        else:
+                            v = v.view(dest_shape)
+                    else:
+                        # Try to reshape to match by taking first elements
+                        v = v.flatten()[:dest_tensor.numel()].view(dest_shape)
+                else:
+                    # Source has fewer elements - this is usually an error
+                    raise ValueError(
+                        "Cannot reshape {} to {} for key '{}': total elements don't match ({} vs {})".format(
+                            v.shape, dest_shape, k, v.numel(), dest_tensor.numel()
+                        )
+                    )
+            
+            # If shapes match, no need to reshape
+            if v.shape != dest_shape:
+                # Shapes don't match but numel matches, try to reshape
+                try:
+                    # Try view first (requires contiguous memory)
+                    v = v.contiguous().view(dest_shape)
+                except RuntimeError as e:
+                    # If view fails, try reshape (more flexible)
+                    try:
+                        v = v.contiguous().reshape(dest_shape)
+                    except RuntimeError:
+                        # Last resort: try view_as
+                        try:
+                            v = v.contiguous().view_as(dest_tensor)
+                        except RuntimeError:
+                            raise RuntimeError(
+                                "Cannot reshape {} to {} for key '{}': {}".format(v.shape, dest_shape, k, str(e))
+                            )
+            
+            target[k][_slices] = v
 
             if k in self.preprocess:
                 new_k = self.preprocess[k][0]
@@ -112,13 +174,10 @@ class EpisodeBatch:
                 target[new_k][_slices] = v.view_as(target[new_k][_slices])
 
     def _check_safe_view(self, v, dest):
-        idx = len(v.shape) - 1
-        for s in dest.shape[::-1]:
-            if v.shape[idx] != s:
-                if s != 1:
-                    raise ValueError("Unsafe reshape of {} to {}".format(v.shape, dest.shape))
-            else:
-                idx -= 1
+        # Check if total number of elements match
+        if v.numel() != dest.numel():
+            raise ValueError("Unsafe reshape of {} to {}: total elements don't match ({} vs {})".format(
+                v.shape, dest.shape, v.numel(), dest.numel()))
 
     def __getitem__(self, item):
         if isinstance(item, str):

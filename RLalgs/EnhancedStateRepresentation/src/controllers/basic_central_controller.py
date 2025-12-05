@@ -10,7 +10,7 @@ class CentralBasicMAC:
         self.args = args
         input_shape = self._get_input_shape(scheme)
         self._build_agents(input_shape)
-        self.agent_output_type = args.agent_output_type
+        self.agent_output_type = getattr(args, 'agent_output_type', 'q')
 
         self.hidden_states = None
 

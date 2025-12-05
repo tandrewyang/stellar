@@ -15,7 +15,6 @@ from copy import deepcopy
 import numpy as np
 import enum
 import math
-import os
 from absl import logging
 
 from pysc2 import maps
@@ -304,30 +303,39 @@ class SC2TacticsEnv(MultiAgentEnv):
         """Launch the StarCraft II game."""
         self._run_config = run_configs.get(version=self.game_version)
         
-        # Try to get map from PySC2 registry, if not found, use direct file path
+        # Try to get map from pysc2 maps, if not found, try tactics maps
         try:
             _map = maps.get(self.map_name)
         except Exception:
-            # Map not in PySC2 registry, use direct file path
-            # import os
+            # If map not found in pysc2, try to find it as tactics map
+            import os
             from smac.env.sc2_tactics.maps import MAP_NAME_ALIASES
+            
             # Resolve map name alias
             actual_map_name = MAP_NAME_ALIASES.get(self.map_name, self.map_name)
-            if not actual_map_name.endswith("_te") and not self.map_name.endswith("_te"):
+            if not actual_map_name.endswith("_te"):
                 actual_map_name = f"{actual_map_name}_te"
             
-            # Construct map file path
-            map_filename = f"{actual_map_name}.SC2Map"
-            map_path = os.path.join(os.environ.get("SC2PATH", ""), "Maps", map_filename)
+            # Try to find map file in StarCraftII/Maps directory
+            sc2_path = os.environ.get("SC2PATH", "/share/project/ytz/StarCraftII")
+            map_path = os.path.join(sc2_path, "Maps", f"{actual_map_name}.SC2Map")
             
-            if not os.path.exists(map_path):
-                raise FileNotFoundError(f"Map file not found: {map_path}")
-            
-            # Create a simple map object
-            class LocalMap:
-                def __init__(self, path):
-                    self.path = path
-            _map = LocalMap(map_path)
+            if os.path.exists(map_path):
+                # Create a map-like object with path attribute
+                class MapObj:
+                    def __init__(self, path):
+                        self.path = path
+                _map = MapObj(map_path)
+            else:
+                # Try without _te suffix
+                map_path = os.path.join(sc2_path, "Maps", f"{self.map_name}.SC2Map")
+                if os.path.exists(map_path):
+                    class MapObj:
+                        def __init__(self, path):
+                            self.path = path
+                    _map = MapObj(map_path)
+                else:
+                    raise Exception(f"Map file not found: {self.map_name} (tried {actual_map_name}.SC2Map and {self.map_name}.SC2Map)")
 
         # Setting up the interface
         interface_options = sc_pb.InterfaceOptions(raw=True, score=False)
@@ -337,31 +345,10 @@ class SC2TacticsEnv(MultiAgentEnv):
         self._controller = self._sc2_proc.controller
 
         # Request to create the game
-        # Fix map path: remove SMAC_Maps/ prefix if present
-        map_path = _map.path
-        if "SMAC_Maps/" in map_path:
-            # Extract just the filename
-            map_filename = os.path.basename(map_path)
-            # Resolve alias if needed
-            from smac.env.sc2_tactics.maps import MAP_NAME_ALIASES
-            base_name = map_filename.replace(".SC2Map", "")
-            actual_map_name = MAP_NAME_ALIASES.get(base_name, base_name)
-            if not actual_map_name.endswith("_te") and not base_name.endswith("_te"):
-                actual_map_name = f"{actual_map_name}_te"
-            map_filename = f"{actual_map_name}.SC2Map"
-            map_path = os.path.join(os.environ.get("SC2PATH", ""), "Maps", map_filename)
-        
-        # Ensure map_path is absolute and exists
-        if not os.path.isabs(map_path):
-            map_path = os.path.join(os.environ.get("SC2PATH", ""), "Maps", os.path.basename(map_path))
-        
-        if not os.path.exists(map_path):
-            raise FileNotFoundError(f"Map file not found: {map_path}")
-        
         create = sc_pb.RequestCreateGame(
             local_map=sc_pb.LocalMap(
-                map_path=map_path,
-                map_data=self._run_config.map_data(map_path),
+                map_path=_map.path,
+                map_data=self._run_config.map_data(_map.path),
             ),
             realtime=False,
             random_seed=self._seed,
@@ -816,16 +803,22 @@ class SC2TacticsEnv(MultiAgentEnv):
 
         # update deaths
         for al_id, al_unit in self.agents.items():
+            # Check if al_id is within valid bounds
+            if al_id < 0 or al_id >= len(self.death_tracker_ally):
+                continue
             if self.check_unit_condition(al_unit, al_id):
                 # did not die so far
                 prev_health = 0
-                if self.previous_ally_units[al_id] == None:
-                    prev_health = al_unit.health + al_unit.shield
+                if self.previous_ally_units is not None and al_id < len(self.previous_ally_units):
+                    if self.previous_ally_units[al_id] == None:
+                        prev_health = al_unit.health + al_unit.shield
+                    else:
+                        prev_health = (
+                            self.previous_ally_units[al_id].health
+                            + self.previous_ally_units[al_id].shield
+                        )
                 else:
-                    prev_health = (
-                        self.previous_ally_units[al_id].health
-                        + self.previous_ally_units[al_id].shield
-                    )
+                    prev_health = al_unit.health + al_unit.shield
                 if al_unit.health == 0:
                     # just died
                     self.death_tracker_ally[al_id] = 1
@@ -1809,12 +1802,19 @@ class SC2TacticsEnv(MultiAgentEnv):
         unit cannot be hallucinated, should belong to owner 1, and should not be egg.
         It should also has the same max_health with the previous state
         """
+        # Check if al_id is within valid bounds
+        if al_id < 0 or al_id >= len(self.death_tracker_ally):
+            return False
+        
         if (
             al_unit != None and
             not self.death_tracker_ally[al_id] and
             not al_unit.is_hallucination and
             al_unit.owner == 1 and
             al_unit.unit_type != 103 and
+            self.previous_ally_units is not None and
+            al_id < len(self.previous_ally_units) and
+            self.previous_ally_units[al_id] is not None and
             self.previous_ally_units[al_id].health_max == al_unit.health_max
         ):
             return True

@@ -150,7 +150,13 @@ class ParallelRunner:
                     # Remaining data for this current timestep
                     post_transition_data["reward"].append((data["reward"],))
 
-                    episode_returns[idx] += data["reward"]
+                                        # Handle reward: if it's a tuple/array, sum it; if it's scalar, use it directly
+                    reward = data["reward"]
+                    if isinstance(reward, (tuple, list)):
+                        reward = sum(reward)
+                    elif hasattr(reward, "sum"):
+                        reward = reward.sum()
+                    episode_returns[idx] += reward
                     episode_lengths[idx] += 1
                     if not test_mode:
                         self.env_steps_this_run += 1

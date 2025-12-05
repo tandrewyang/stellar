@@ -35,7 +35,8 @@
 - **配置文件**: `src/config/algs/enhanced_qmix.yaml`
 - **训练脚本**: `train_single_map.sh`
 
-### 4. CurriculumLearning
+### 4. CurriculumLearning./start_missing_tasks.sh
+
 - **路径**: `RLalgs/CurriculumLearning/`
 - **优化方向**: 训练策略改进 - 课程学习
 - **核心改进**:

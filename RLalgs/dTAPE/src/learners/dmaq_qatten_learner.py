@@ -89,7 +89,7 @@ class DMAQ_qattenLearner:
         target_mac_out[avail_actions == 0] = -9999999
 
         # Max over target Q-Values
-        if self.args.double_q:
+        if getattr(self.args, 'double_q', False):
             # Get actions that maximise live Q (for double q-learning)
             mac_out_detach = mac_out.clone().detach()
             mac_out_detach[avail_actions == 0] = -9999999
@@ -109,7 +109,7 @@ class DMAQ_qattenLearner:
                             max_q_i=max_action_qvals, is_v=False)
             chosen_action_qvals = ans_chosen + ans_adv
 
-            if self.args.double_q:
+            if getattr(self.args, 'double_q', False):
                 target_chosen = self.target_mixer(target_chosen_qvals, batch["state"], is_v=True)
                 target_adv = self.target_mixer(target_chosen_qvals, batch["state"],
                                                 actions=cur_max_actions_onehot,

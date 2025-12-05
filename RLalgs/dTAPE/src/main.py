@@ -10,26 +10,11 @@ import sys
 import torch as th
 from utils.logging import get_logger
 import yaml
-import os
 
 from run import REGISTRY as run_REGISTRY
 
 SETTINGS['CAPTURE_MODE'] = "fd" # set to "no" if you want to see stdout/stderr in console
 logger = get_logger()
-
-# Patch sacred dependencies to avoid Git errors
-try:
-    from sacred import dependencies
-    original_get_commit = dependencies.get_commit_if_possible
-    def safe_get_commit(main_file, save_git_info):
-        try:
-            return original_get_commit(main_file, save_git_info)
-        except (ValueError, Exception):
-            # Return None if Git info cannot be retrieved
-            return None, None, False
-    dependencies.get_commit_if_possible = safe_get_commit
-except ImportError:
-    pass
 
 ex = Experiment("pymarl")
 ex.logger = logger
@@ -118,7 +103,7 @@ if __name__ == '__main__':
 
     # Save to disk by default for sacred
     map_name = parse_command(params, "env_args.map_name", config_dict['env_args']['map_name'])
-    algo_name = parse_command(params, "name", config_dict['name']) 
+    algo_name = parse_command(params, "name", config_dict.get('name', 'coma_env=8_adam_td_lambda')) 
     file_obs_path = join(results_path, "sacred", map_name, algo_name)
     
     logger.info("Saving to FileStorageObserver in {}.".format(file_obs_path))

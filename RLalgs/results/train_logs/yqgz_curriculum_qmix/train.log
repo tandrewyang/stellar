@@ -1,23 +1,23 @@
 /root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/dependencies.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   import pkg_resources
-[DEBUG 14:08:17] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning, stdin=None, shell=False, universal_newlines=False)
-[DEBUG 14:08:17] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning, stdin=None, shell=False, universal_newlines=False)
-[DEBUG 14:08:17] git.util sys.platform='linux', git_executable='git'
-[DEBUG 14:08:17] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
-[DEBUG 14:08:17] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
-[DEBUG 14:08:18] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
-[DEBUG 14:08:18] git.util sys.platform='linux', git_executable='git'
-[DEBUG 14:08:18] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
-[DEBUG 14:08:18] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
-[DEBUG 14:08:18] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
-[INFO 14:08:18] root Saving to FileStorageObserver in /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/results/sacred/yqgz/curriculum_qmix_env=4_adam_td_lambda.
-[DEBUG 14:08:20] pymarl Using capture mode "fd"
-[INFO 14:08:20] pymarl Running command 'my_main'
-[INFO 14:08:20] pymarl Started run with ID "1"
-[DEBUG 14:08:20] pymarl Starting Heartbeat
-[DEBUG 14:08:20] my_main Started
-[INFO 14:08:20] my_main Experiment Parameters:
-[INFO 14:08:20] my_main 
+[DEBUG 16:15:54] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.util sys.platform='linux', git_executable='git'
+[DEBUG 16:15:54] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.util sys.platform='linux', git_executable='git'
+[DEBUG 16:15:54] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 16:15:54] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
+[INFO 16:15:55] root Saving to FileStorageObserver in /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/results/sacred/yqgz/curriculum_qmix_env=4_adam_td_lambda.
+[DEBUG 16:15:57] pymarl Using capture mode "fd"
+[INFO 16:15:57] pymarl Running command 'my_main'
+[INFO 16:15:57] pymarl Started run with ID "6"
+[DEBUG 16:15:57] pymarl Starting Heartbeat
+[DEBUG 16:15:57] my_main Started
+[INFO 16:15:57] my_main Experiment Parameters:
+[INFO 16:15:57] my_main 
 
 {   'action_selector': 'epsilon_greedy',
     'agent': 'rnn',
@@ -140,7 +140,7 @@
     'test_nepisode': 32,
     'use_IB': True,
     'use_cuda': True,
-    'use_tensorboard': True,
+    'use_tensorboard': False,
     'w': 0.5}
 
 ----------------------
@@ -149,23 +149,23 @@ You create a YQGZ env!
 383
 Mixer Size: 
 840.195K
-namespace(runner='episode', mac='basic_mac_logits', env='sc2_tactics', env_args={'continuing_episode': False, 'difficulty': '7', 'game_version': None, 'map_name': 'yqgz', 'move_amount': 2, 'obs_all_health': True, 'obs_instead_of_state': False, 'obs_last_action': False, 'obs_own_health': True, 'obs_pathing_grid': True, 'obs_terrain_height': True, 'obs_timestep_number': False, 'reward_death_value': 10, 'reward_defeat': 0, 'reward_negative_scale': 0.5, 'reward_only_positive': False, 'reward_scale': True, 'reward_scale_rate': 20, 'reward_sparse': False, 'reward_win': 200, 'replay_dir': '', 'replay_prefix': '', 'state_last_action': True, 'state_timestep_number': False, 'step_mul': 8, 'seed': 42, 'heuristic_ai': False, 'heuristic_rest': False, 'debug': False}, batch_size_run=1, test_nepisode=32, test_interval=10000, test_greedy=True, log_interval=10000, runner_log_interval=10000, learner_log_interval=10000, t_max=2005000, use_cuda=True, buffer_cpu_only=True, use_tensorboard=True, save_model=True, save_model_interval=500000, checkpoint_path='', evaluate=False, load_step=0, save_replay=False, local_results_path='results', gamma=0.99, batch_size=128, buffer_size=5000, lr=0.001, critic_lr=0.0005, optim_alpha=0.99, optim_eps=1e-05, grad_norm_clip=10, agent='rnn', rnn_hidden_dim=64, obs_agent_id=True, obs_last_action=True, repeat_id=1, label='default_label', run='default', action_selector='epsilon_greedy', epsilon_start=0.995, epsilon_finish=0.05, epsilon_anneal_time=100000, critic_mac='cate_broadcast_comm_mac_full', critic_agent='rnn_agent_n', comm=True, comm_embed_dim=3, comm_method='information_bottleneck_full', c_beta=1.0, comm_beta=0.001, comm_entropy_beta='1e-6', gate_loss_beta=1e-05, only_downstream=False, use_IB=True, is_print=False, is_comm_beta_decay=False, comm_beta_start_decay=20000000, comm_beta_target='1e-2', comm_beta_end_decay=50000000, is_comm_entropy_beta_decay=False, comm_entropy_beta_start_decay=20000000, comm_entropy_beta_target='1e-4', comm_entropy_beta_end_decay=50000000, is_cur_mu=False, is_rank_cut_mu=False, cut_mu_thres=1.0, cut_mu_rank_thres=80.0, target_update_interval=200, agent_output_type='q', learner='curriculum_learner', double_q=True, mixer='qmix', mixing_embed_dim=64, hypernet_layers=2, hypernet_embed=128, curriculum_enabled=True, curriculum_schedule='linear', curriculum_start_step=0, curriculum_end_step=1000000, curriculum_min_difficulty=0.0, curriculum_max_difficulty=1.0, central_loss=1, qmix_loss=1, w=0.5, hysteretic_qmix=True, central_mixing_embed_dim=256, central_action_embed=1, central_mac='basic_central_mac', central_agent='central_rnn', central_rnn_hidden_dim=64, central_mixer='ff', td_lambda=0.6, alpha_lr='3e-4', alpha_init=-0.07, p=0.5, name='curriculum_qmix_env=4_adam_td_lambda', seed=42, device='cuda', unique_token='curriculum_qmix_env=4_adam_td_lambda__2025-11-19_14-08-20', n_agents=24, n_actions=14, state_shape=552, accumulated_episodes=None)
-[INFO 14:08:22] my_main Beginning training for 2005000 timesteps
-[INFO 14:08:22] absl Launching SC2: /share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 32861 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-d06p0qpf/
-[INFO 14:08:22] absl Connecting to: ws://127.0.0.1:32861/sc2api, attempt: 0, running: True
+namespace(runner='episode', mac='basic_mac_logits', env='sc2_tactics', env_args={'continuing_episode': False, 'difficulty': '7', 'game_version': None, 'map_name': 'yqgz', 'move_amount': 2, 'obs_all_health': True, 'obs_instead_of_state': False, 'obs_last_action': False, 'obs_own_health': True, 'obs_pathing_grid': True, 'obs_terrain_height': True, 'obs_timestep_number': False, 'reward_death_value': 10, 'reward_defeat': 0, 'reward_negative_scale': 0.5, 'reward_only_positive': False, 'reward_scale': True, 'reward_scale_rate': 20, 'reward_sparse': False, 'reward_win': 200, 'replay_dir': '', 'replay_prefix': '', 'state_last_action': True, 'state_timestep_number': False, 'step_mul': 8, 'seed': 42, 'heuristic_ai': False, 'heuristic_rest': False, 'debug': False}, batch_size_run=1, test_nepisode=32, test_interval=10000, test_greedy=True, log_interval=10000, runner_log_interval=10000, learner_log_interval=10000, t_max=2005000, use_cuda=True, buffer_cpu_only=True, use_tensorboard=False, save_model=True, save_model_interval=500000, checkpoint_path='', evaluate=False, load_step=0, save_replay=False, local_results_path='results', gamma=0.99, batch_size=128, buffer_size=5000, lr=0.001, critic_lr=0.0005, optim_alpha=0.99, optim_eps=1e-05, grad_norm_clip=10, agent='rnn', rnn_hidden_dim=64, obs_agent_id=True, obs_last_action=True, repeat_id=1, label='default_label', run='default', action_selector='epsilon_greedy', epsilon_start=0.995, epsilon_finish=0.05, epsilon_anneal_time=100000, critic_mac='cate_broadcast_comm_mac_full', critic_agent='rnn_agent_n', comm=True, comm_embed_dim=3, comm_method='information_bottleneck_full', c_beta=1.0, comm_beta=0.001, comm_entropy_beta='1e-6', gate_loss_beta=1e-05, only_downstream=False, use_IB=True, is_print=False, is_comm_beta_decay=False, comm_beta_start_decay=20000000, comm_beta_target='1e-2', comm_beta_end_decay=50000000, is_comm_entropy_beta_decay=False, comm_entropy_beta_start_decay=20000000, comm_entropy_beta_target='1e-4', comm_entropy_beta_end_decay=50000000, is_cur_mu=False, is_rank_cut_mu=False, cut_mu_thres=1.0, cut_mu_rank_thres=80.0, target_update_interval=200, agent_output_type='q', learner='curriculum_learner', double_q=True, mixer='qmix', mixing_embed_dim=64, hypernet_layers=2, hypernet_embed=128, curriculum_enabled=True, curriculum_schedule='linear', curriculum_start_step=0, curriculum_end_step=1000000, curriculum_min_difficulty=0.0, curriculum_max_difficulty=1.0, central_loss=1, qmix_loss=1, w=0.5, hysteretic_qmix=True, central_mixing_embed_dim=256, central_action_embed=1, central_mac='basic_central_mac', central_agent='central_rnn', central_rnn_hidden_dim=64, central_mixer='ff', td_lambda=0.6, alpha_lr='3e-4', alpha_init=-0.07, p=0.5, name='curriculum_qmix_env=4_adam_td_lambda', seed=42, device='cuda', unique_token='curriculum_qmix_env=4_adam_td_lambda__2025-11-26_16-15-57', n_agents=24, n_actions=14, state_shape=552, accumulated_episodes=None)
+[INFO 16:16:00] my_main Beginning training for 2005000 timesteps
+[INFO 16:16:00] absl Launching SC2: /share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 34825 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-sp4y62kh/
+[INFO 16:16:00] absl Connecting to: ws://127.0.0.1:34825/sc2api, attempt: 0, running: True
 Version: B75689 (SC2.4.10)
 Build: Aug 12 2019 17:16:57
-Command Line: '"/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 32861 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-d06p0qpf/'
+Command Line: '"/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 34825 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-sp4y62kh/'
 Starting up...
 Startup Phase 1 complete
-[INFO 14:08:23] absl Connecting to: ws://127.0.0.1:32861/sc2api, attempt: 1, running: True
+[INFO 16:16:01] absl Connecting to: ws://127.0.0.1:34825/sc2api, attempt: 1, running: True
 Startup Phase 2 complete
 Creating stub renderer...
-Listening on: 127.0.0.1:32861
+Listening on: 127.0.0.1:34825
 Startup Phase 3 complete. Ready for commands.
-[INFO 14:08:24] absl Connecting to: ws://127.0.0.1:32861/sc2api, attempt: 2, running: True
-ConnectHandler: Request from 127.0.0.1:52162 accepted
-ReadyHandler: 127.0.0.1:52162 ready
+[INFO 16:16:02] absl Connecting to: ws://127.0.0.1:34825/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:43762 accepted
+ReadyHandler: 127.0.0.1:43762 ready
 Requesting to join a single player game
 Configuring interface options
 Configure: raw interface enabled
@@ -189,23 +189,35 @@ Sending ResponseJoinGame
   v = th.tensor(v, dtype=dtype, device=self.device)
 /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/components/episode_buffer.py:103: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
   v = th.tensor(v, dtype=dtype, device=self.device)
-[INFO 14:08:33] my_main t_env: 150 / 2005000
-[INFO 14:08:33] my_main Estimated time left: 35 minutes, 51 seconds. Time passed: 10 seconds
-[INFO 14:10:36] my_main Saving models to results/models/curriculum_qmix_env=4_adam_td_lambda__2025-11-19_14-08-20/150
-[INFO 14:15:32] my_main Recent Stats | t_env:      10050 | Episode:       67
+[INFO 16:16:13] my_main t_env: 150 / 2005000
+[INFO 16:16:13] my_main Estimated time left: 40 minutes, 45 seconds. Time passed: 12 seconds
+[INFO 16:18:48] my_main Saving models to results/models/curriculum_qmix_env=4_adam_td_lambda__2025-11-26_16-15-57/150
+[INFO 16:27:40] my_main Recent Stats | t_env:      10050 | Episode:       67
 battle_won_mean:           0.0000	dead_allies_mean:          3.0000	dead_enemies_mean:         0.0000	delta_ally_mean:          52.5000
 delta_deaths_mean:       -15.0000	delta_enemy_mean:          0.0000	ep_length_mean:          150.0000	epsilon:                   0.9950
 reward_mean:              -1.5000	reward_std:                0.0000	test_battle_won_mean:      0.0000	test_dead_allies_mean:     0.0000
 test_dead_enemies_mean:    0.0000	test_delta_ally_mean:      0.0000	test_delta_deaths_mean:    0.0000	test_delta_enemy_mean:     0.0000
 test_ep_length_mean:     150.0000	test_reward_mean:          0.0000	test_reward_std:           0.0000	
-[INFO 14:15:38] my_main t_env: 10200 / 2005000
-[INFO 14:15:38] my_main Estimated time left: 23 hours, 26 minutes, 34 seconds. Time passed: 7 minutes, 16 seconds
+[INFO 16:27:49] my_main t_env: 10200 / 2005000
+[INFO 16:27:49] my_main Estimated time left: 1 days, 14 hours, 21 minutes, 35 seconds. Time passed: 11 minutes, 48 seconds
+[INFO 16:43:00] my_main Recent Stats | t_env:      20100 | Episode:      134
+alpha:                     0.9323	alpha_loss:              -26.0601	battle_won_mean:           0.0000	central_loss:              0.0084
+comm_loss:                 0.6307	curriculum/difficulty:     0.0198	curriculum/progress:       0.0198	dead_allies_mean:          4.6418
+dead_enemies_mean:         0.0000	delta_ally_mean:          84.0671	delta_deaths_mean:       -23.2090	delta_enemy_mean:          0.0000
+ep_length_mean:          150.0000	epsilon:                   0.9000	grad_norm:                 2.8903	loss:                      0.6964
+mixer_norm:                1.8439	policy_loss:              -1.0976	q_taken_mean:             -0.0073	qmix_loss:                 0.0572
+reward_mean:              -2.3839	reward_std:                2.7890	target_mean:              -0.0029	td_error_abs:              0.2049
+test_battle_won_mean:      0.0000	test_dead_allies_mean:     0.0000	test_dead_enemies_mean:    0.0000	test_delta_ally_mean:      0.0000
+test_delta_deaths_mean:    0.0000	test_delta_enemy_mean:     0.0000	test_ep_length_mean:     150.0000	test_reward_mean:          0.0000
+test_reward_std:           0.0000	w_to_use:                  0.8549	
+[INFO 16:43:17] my_main t_env: 20250 / 2005000
+[INFO 16:43:17] my_main Estimated time left: 2 days, 2 hours, 56 minutes, 52 seconds. Time passed: 27 minutes, 16 seconds
 /root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/stdout_capturing.py:179: UserWarning: tee_stdout.wait timeout. Forcibly terminating.
   warnings.warn("tee_stdout.wait timeout. Forcibly terminating.")
 /root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/stdout_capturing.py:185: UserWarning: tee_stderr.wait timeout. Forcibly terminating.
   warnings.warn("tee_stderr.wait timeout. Forcibly terminating.")
-[DEBUG 14:23:21] pymarl Stopping Heartbeat
-[ERROR 14:23:21] pymarl Failed after 0:15:01!
+[DEBUG 16:53:12] pymarl Stopping Heartbeat
+[ERROR 16:53:12] pymarl Failed after 0:37:15!
 Traceback (most recent calls WITHOUT Sacred internals):
   File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/main.py", line 53, in my_main
     run_REGISTRY[_config['run']](_run, config, _log)
@@ -215,15 +227,13 @@ Traceback (most recent calls WITHOUT Sacred internals):
     learner.train(episode_sample, runner.t_env, episode)
   File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/learners/curriculum_learner.py", line 107, in train
     return super(CurriculumLearner, self).train(batch, t_env, episode_num)
-  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/learners/max_q_learner.py", line 215, in train
-    Q_i_mean_negi_mean = self.mixer(q_i_mean_negi_mean.view(-1, self.n_agents, 1), batch["state"],dropout=True).view(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],self.n_agents)[:,:-1]
-  File "/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/modules/mixers/qmix.py", line 50, in forward
-    w1 = self.hyper_w_1(states).abs() if self.abs else self.hyper_w_1(states)
-torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.65 GiB. GPU 0 has a total capacty of 79.11 GiB of which 1.29 GiB is free. Process 800898 has 942.00 MiB memory in use. Process 800714 has 17.58 GiB memory in use. Process 801172 has 934.00 MiB memory in use. Process 801510 has 930.00 MiB memory in use. Process 802152 has 1.58 GiB memory in use. Process 802640 has 4.36 GiB memory in use. Process 805453 has 24.46 GiB memory in use. Process 805882 has 908.00 MiB memory in use. Process 806347 has 946.00 MiB memory in use. Process 807019 has 4.42 GiB memory in use. Process 807486 has 936.00 MiB memory in use. Process 807829 has 19.87 GiB memory in use. Of the allocated memory 17.95 GiB is allocated by PyTorch, and 1.08 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/learners/max_q_learner.py", line 262, in train
+    compactness_loss = D.kl_divergence(D.Normal(mu_out, sigma_out), D.Normal(self.s_mu, self.s_sigma)).sum() / \
+  File "/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/distributions/kl.py", line 191, in kl_divergence
+    return fun(p, q)
+  File "/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/distributions/kl.py", line 469, in _kl_normal_normal
+    return 0.5 * (var_ratio + t1 - 1 - var_ratio.log())
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 128.00 MiB. GPU 0 has a total capacty of 79.11 GiB of which 53.56 MiB is free. Process 2531680 has 8.20 GiB memory in use. Process 2535016 has 4.49 GiB memory in use. Process 2539023 has 5.25 GiB memory in use. Process 2539522 has 18.09 GiB memory in use. Process 2540176 has 5.06 GiB memory in use. Process 2542937 has 13.47 GiB memory in use. Process 2543493 has 24.46 GiB memory in use. Of the allocated memory 22.11 GiB is allocated by PyTorch, and 1.25 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
 
-[INFO 14:23:21] absl Shutdown gracefully.
-[INFO 14:23:21] absl Shutdown with return code: -15
+[INFO 16:53:12] absl Shutdown gracefully.
+[INFO 16:53:12] absl Shutdown with return code: -15

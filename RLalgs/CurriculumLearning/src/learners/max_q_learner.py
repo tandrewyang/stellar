@@ -155,7 +155,7 @@ class MAXQLearner:
         target_mac_out[avail_actions[:, :] == 0] = -9999999  # From OG deepmarl
 
         # Max over target Q-Values
-        if self.args.double_q:
+        if getattr(self.args, 'double_q', False):
             # Get actions that maximise live Q (for double q-learning)
             mac_out_detach = mac_out.clone().detach()
             mac_out_detach[avail_actions == 0] = -9999999

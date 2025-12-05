@@ -1,0 +1,160 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "pyyaml==6.0.3",
+      "sacred==0.8.7",
+      "torch==2.1.2+cu118"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "ef65acb6db201cca6158afae4e1b05782e9b3ab0",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "ef65acb6db201cca6158afae4e1b05782e9b3ab0",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_3992b8ec14bf1a440a6c16ee0a45870f.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_600053ef114d259d30892ef0975f7420.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/run/run.py\", line 54, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/run/run.py\", line 197, in run_sequential\n    learner.train(episode_sample, runner.t_env, episode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/learners/curriculum_learner.py\", line 107, in train\n    return super(CurriculumLearner, self).train(batch, t_env, episode_num)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/learners/max_q_learner.py\", line 215, in train\n    Q_i_mean_negi_mean = self.mixer(q_i_mean_negi_mean.view(-1, self.n_agents, 1), batch[\"state\"],dropout=True).view(q_i_mean_negi_mean.shape[0],q_i_mean_negi_mean.shape[1],self.n_agents)[:,:-1]\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1518, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n",
+    "  File \"/root/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1527, in _call_impl\n    return forward_call(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/modules/mixers/qmix.py\", line 50, in forward\n    w1 = self.hyper_w_1(states).abs() if self.abs else self.hyper_w_1(states)\n",
+    "torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.35 GiB. GPU 0 has a total capacty of 79.11 GiB of which 1.60 GiB is free. Process 1255563 has 12.01 GiB memory in use. Process 1257412 has 1.59 GiB memory in use. Process 1264621 has 21.62 GiB memory in use. Process 1265567 has 4.42 GiB memory in use. Process 1266207 has 13.47 GiB memory in use. Process 1268923 has 24.37 GiB memory in use. Of the allocated memory 20.50 GiB is allocated by PyTorch, and 284.73 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF\n"
+  ],
+  "heartbeat": "2025-11-25T07:41:48.021560",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.19"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "tlhz"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": false
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=tlhz",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=False",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-11-25T07:07:11.019702",
+  "status": "FAILED",
+  "stop_time": "2025-11-25T07:41:48.033352"
+}

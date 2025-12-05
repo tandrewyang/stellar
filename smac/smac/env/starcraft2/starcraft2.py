@@ -335,7 +335,40 @@ class StarCraft2Env(MultiAgentEnv):
     def _launch(self):
         """Launch the StarCraft II game."""
         self._run_config = run_configs.get(version=self.game_version)
-        _map = maps.get(self.map_name)
+        
+        # Try to get map from pysc2 maps, if not found, try tactics maps
+        try:
+            _map = maps.get(self.map_name)
+        except Exception:
+            # If map not found in pysc2, try to find it as tactics map
+            import os
+            from smac.env.sc2_tactics.maps import MAP_NAME_ALIASES
+            
+            # Resolve map name alias
+            actual_map_name = MAP_NAME_ALIASES.get(self.map_name, self.map_name)
+            if not actual_map_name.endswith("_te"):
+                actual_map_name = f"{actual_map_name}_te"
+            
+            # Try to find map file in StarCraftII/Maps directory
+            sc2_path = os.environ.get("SC2PATH", "/share/project/ytz/StarCraftII")
+            map_path = os.path.join(sc2_path, "Maps", f"{actual_map_name}.SC2Map")
+            
+            if os.path.exists(map_path):
+                # Create a map-like object with path attribute
+                class MapObj:
+                    def __init__(self, path):
+                        self.path = path
+                _map = MapObj(map_path)
+            else:
+                # Try without _te suffix
+                map_path = os.path.join(sc2_path, "Maps", f"{self.map_name}.SC2Map")
+                if os.path.exists(map_path):
+                    class MapObj:
+                        def __init__(self, path):
+                            self.path = path
+                    _map = MapObj(map_path)
+                else:
+                    raise Exception(f"Map file not found: {self.map_name} (tried {actual_map_name}.SC2Map and {self.map_name}.SC2Map)")
 
         # Setting up the interface
         interface_options = sc_pb.InterfaceOptions(raw=True, score=False)
@@ -1109,6 +1142,8 @@ class StarCraft2Env(MultiAgentEnv):
 
             # Enemy features
             for e_id, e_unit in self.enemies.items():
+                if e_unit is None:
+                    continue
                 e_x = e_unit.pos.x
                 e_y = e_unit.pos.y
                 dist = self.distance(x, y, e_x, e_y)
@@ -1152,6 +1187,8 @@ class StarCraft2Env(MultiAgentEnv):
             for i, al_id in enumerate(al_ids):
 
                 al_unit = self.get_unit_by_id(al_id)
+                if al_unit is None:
+                    continue
                 al_x = al_unit.pos.x
                 al_y = al_unit.pos.y
                 dist = self.distance(x, y, al_x, al_y)
@@ -1335,6 +1372,8 @@ class StarCraft2Env(MultiAgentEnv):
                     ally_state[al_id, type_id - self.unit_type_bits] = 1
 
         for e_id, e_unit in self.enemies.items():
+            if e_unit is None:
+                continue
             if e_unit.health > 0:
                 x = e_unit.pos.x
                 y = e_unit.pos.y
@@ -1475,6 +1514,8 @@ class StarCraft2Env(MultiAgentEnv):
 
                 # Enemies
                 for e_id, e_unit in self.enemies.items():
+                    if e_unit is None:
+                        continue
                     e_x = e_unit.pos.x
                     e_y = e_unit.pos.y
                     dist = self.distance(x, y, e_x, e_y)
@@ -1489,6 +1530,8 @@ class StarCraft2Env(MultiAgentEnv):
                 ]
                 for _, al_id in enumerate(al_ids):
                     al_unit = self.get_unit_by_id(al_id)
+                    if al_unit is None:
+                        continue
                     al_x = al_unit.pos.x
                     al_y = al_unit.pos.y
                     dist = self.distance(x, y, al_x, al_y)

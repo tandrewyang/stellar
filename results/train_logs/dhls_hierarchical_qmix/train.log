@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/main.py", line 15, in <module>
+    from run import REGISTRY as run_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/run/__init__.py", line 1, in <module>
+    from .run import run as default_run
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/run/run.py", line 12, in <module>
+    from learners import REGISTRY as le_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/learners/__init__.py", line 4, in <module>
+    from .ppo_learner import PPOLearner
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/learners/ppo_learner.py", line 3, in <module>
+    from controllers.n_controller import NMAC
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/controllers/__init__.py", line 1, in <module>
+    from .basic_controller_logits import BasicMACLogits
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/HierarchicalArchitecture/src/controllers/basic_controller_logits.py", line 53
+    self.hidden_states = self.hidden_states.unsqueeze(0).expand(batch_size, self.n_agents, -1)  # bav
+    ^
+IndentationError: expected an indented block after 'else' statement on line 52

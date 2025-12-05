@@ -85,7 +85,7 @@ class QLearner:
             joint_qs, vs = self.mixer(batch[:, :-1], mac_hidden_states[:,:-1])
 
             # Need to argmax across the target agents' actions to compute target joint-action Q-Values
-            if self.args.double_q:
+            if getattr(self.args, 'double_q', False):
                 max_actions_current_ = th.zeros(size=(batch.batch_size, batch.max_seq_length, self.args.n_agents, self.args.n_actions), device=batch.device)
                 max_actions_current_onehot = max_actions_current_.scatter(3, max_actions_current[:, :], 1)
                 max_actions_onehot = max_actions_current_onehot
@@ -103,7 +103,7 @@ class QLearner:
 
             # -- Opt Loss --
             # Argmax across the current agents' actions
-            if not self.args.double_q: # Already computed if we're doing double Q-Learning
+            if not getattr(self.args, 'double_q', False): # Already computed if we're doing double Q-Learning
                 max_actions_current_ = th.zeros(size=(batch.batch_size, batch.max_seq_length, self.args.n_agents, self.args.n_actions), device=batch.device )
                 max_actions_current_onehot = max_actions_current_.scatter(3, max_actions_current[:, :], 1)
             max_joint_qs, _ = self.mixer(batch[:, :-1], mac_hidden_states[:,:-1], actions=max_actions_current_onehot[:,:-1]) # Don't use the target network and target agent max actions as per author's email

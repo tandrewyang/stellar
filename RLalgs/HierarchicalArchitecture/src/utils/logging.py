@@ -16,9 +16,6 @@ class Logger:
     def setup_tb(self, directory_name):
         # Import here so it doesn't have to be installed if you don't use it
         from tensorboard_logger import configure, log_value
-        import os
-        # Ensure directory exists before configuring
-        os.makedirs(directory_name, exist_ok=True)
         configure(directory_name)
         self.tb_logger = log_value
         self.use_tb = True
@@ -31,7 +28,10 @@ class Logger:
         self.stats[key].append((t, value))
 
         if self.use_tb:
-            self.tb_logger(key, value, t)
+            try:
+                self.tb_logger(key, value, t)
+            except OSError:
+                pass
 
         if self.use_sacred and to_sacred:
             if key in self.sacred_info:

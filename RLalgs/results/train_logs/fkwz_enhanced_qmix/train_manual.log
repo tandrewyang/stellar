@@ -1,0 +1,18 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/main.py", line 15, in <module>
+    from run import REGISTRY as run_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/run/__init__.py", line 1, in <module>
+    from .run import run as default_run
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/run/run.py", line 12, in <module>
+    from learners import REGISTRY as le_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/learners/__init__.py", line 4, in <module>
+    from .ppo_learner import PPOLearner
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/learners/ppo_learner.py", line 3, in <module>
+    from controllers.n_controller import NMAC
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/controllers/__init__.py", line 2, in <module>
+    from .cate_broadcast_comm_controller_full import CateBCommFMAC
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/EnhancedStateRepresentation/src/controllers/cate_broadcast_comm_controller_full.py", line 1
+    def parameters(self):
+IndentationError: unexpected indent
+[W1124 11:16:01.117060327 AllocatorConfig.cpp:28] Warning: PYTORCH_CUDA_ALLOC_CONF is deprecated, use PYTORCH_ALLOC_CONF instead (function operator())

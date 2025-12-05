@@ -1,85 +1,47 @@
-# Enhanced QMIX配置
-# 特征工程优化：改进状态表示
+# EnhancedStateRepresentation - Enhanced QMIX configuration
+# 增强状态表示的QMIX配置
 
 # use epsilon greedy action selector
 action_selector: "epsilon_greedy"
-epsilon_start: 0.995
+epsilon_start: 1.0
 epsilon_finish: 0.05
 epsilon_anneal_time: 100000
 
 runner: "episode"
 batch_size_run: 1
 buffer_size: 5000
-
 batch_size: 128
 
-critic_mac: "cate_broadcast_comm_mac_full"
-critic_agent: "rnn_agent_n"
-
-# Comm
-comm: True
-comm_embed_dim: 3
-comm_method: "information_bottleneck_full"
-c_beta: 1.
-comm_beta: 0.001
-comm_entropy_beta: 1e-6
-gate_loss_beta: 0.00001
-only_downstream: False
-use_IB: True
-is_print: False
-
-is_comm_beta_decay: False
-comm_beta_start_decay: 20000000
-comm_beta_target: 1e-2
-comm_beta_end_decay: 50000000
-
-is_comm_entropy_beta_decay: False
-comm_entropy_beta_start_decay: 20000000
-comm_entropy_beta_target: 1e-4
-comm_entropy_beta_end_decay: 50000000
-
-is_cur_mu: False
-is_rank_cut_mu: False
-cut_mu_thres: 1.
-cut_mu_rank_thres: 80.0
+t_max: 2005000
 
 # update the target network every {} episodes
 target_update_interval: 200
-t_max: 2005000
 
 # use the Q_Learner to train
-mac : "basic_mac_logits"
-agent: "enhanced_rnn"  # 使用增强的RNN智能体
+mac: "basic_mac"
+agent: "rnn"  # 或 "enhanced_rnn" 如果实现了增强的RNN
 agent_output_type: "q"
-learner: "max_q_learner"
-double_q: True
+
+learner: "q_learner"  # 或 "max_q_learner" 如果需要
 mixer: "qmix"
-mixing_embed_dim: 64
-hypernet_layers: 2
-hypernet_embed: 128
-
-# 特征工程参数
-enhanced_feature_dim: 128  # 增强特征维度
-enhanced_dropout: 0.1  # Dropout率
-use_spatial_features: False  # 是否使用空间特征（如果观测包含空间信息）
-
-central_loss: 1
-qmix_loss: 1
-w: 0.5
-hysteretic_qmix: True
-
-central_mixing_embed_dim: 256
-central_action_embed: 1
-central_mac: "basic_central_mac"
-central_agent: "central_rnn"
-central_rnn_hidden_dim: 64
-central_mixer: "ff"
+mixing_embed_dim: 32
+hypernet_embed: 64
+lr: 0.0005  # Learning rate for agents
 td_lambda: 0.6
-lr: 0.001
+optimizer: 'adam'
+q_lambda: False
 
-alpha_lr: 3e-4
-alpha_init: -0.07
+# rnn layer normalization
+use_layer_norm: False
 
-p: 0.5
-name: "enhanced_qmix_env=4_adam_td_lambda"
+# orthogonal init for DNN
+use_orthogonal: False
+gain: 0.01
 
+# Priority experience replay
+use_per: False
+per_alpha: 0.6
+per_beta: 0.4
+return_priority: False
+
+name: "enhanced_qmix"

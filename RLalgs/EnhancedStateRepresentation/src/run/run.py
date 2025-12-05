@@ -40,7 +40,8 @@ def run(_run, _config, _log):
     _log.info("\n\n" + experiment_params + "\n")
 
     # configure tensorboard logger
-    unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    algo_name = getattr(args, 'name', _config.get('name', 'enhanced_qmix'))
+    unique_token = "{}__{}".format(algo_name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
     args.unique_token = unique_token
     if args.use_tensorboard:
         tb_logs_direc = os.path.join(dirname(dirname(dirname(abspath(__file__)))), "results", "tb_logs",args.env_args['map_name'])
@@ -123,7 +124,8 @@ def run_sequential(args, logger):
     # policy_mac = mac_REGISTRY[args.policy_mac](buffer.scheme, groups, args)
 
     # Learner
-    learner = le_REGISTRY[args.learner](mac, buffer.scheme, logger, args)
+    learner_name = getattr(args, 'learner', 'q_learner')
+    learner = le_REGISTRY[learner_name](mac, buffer.scheme, logger, args)
 
     if args.use_cuda:
         learner.cuda()
@@ -214,12 +216,15 @@ def run_sequential(args, logger):
             model_save_time = runner.t_env
             save_path = os.path.join(args.local_results_path, "models", args.unique_token, str(runner.t_env))
             #"results/models/{}".format(unique_token)
-            os.makedirs(save_path, exist_ok=True)
-            logger.console_logger.info("Saving models to {}".format(save_path))
+            try:
+                os.makedirs(save_path, exist_ok=True)
+                logger.console_logger.info("Saving models to {}".format(save_path))
 
-            # learner should handle saving/loading -- delegate actor save/load to mac,
-            # use appropriate filenames to do critics, optimizer states
-            learner.save_models(save_path)
+                # learner should handle saving/loading -- delegate actor save/load to mac,
+                # use appropriate filenames to do critics, optimizer states
+                learner.save_models(save_path)
+            except OSError as e:
+                logger.console_logger.warning("Failed to save models: {}".format(e))
 
         episode += args.batch_size_run
 
@@ -246,3 +251,4 @@ def args_sanity_check(config, _log):
         config["test_nepisode"] = (config["test_nepisode"]//config["batch_size_run"]) * config["batch_size_run"]
 
     return config
+

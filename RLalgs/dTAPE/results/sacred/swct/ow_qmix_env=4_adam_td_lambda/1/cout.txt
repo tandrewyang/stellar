@@ -4416,3 +4416,27 @@ target_mean:               0.0394	td_error_abs:              0.0160	test_battle_
 test_dead_enemies_mean:    9.8750	test_delta_ally_mean:     69.0938	test_delta_deaths_mean:   97.6562	test_delta_enemy_mean:   345.7037
 test_ep_length_mean:      88.9375	test_reward_mean:          0.9534	test_reward_std:           0.1045	w_to_use:                  0.6548
 
+[INFO 15:15:16] my_main Updated target network
+[INFO 15:15:16] my_main t_env: 1996023 / 2005000
+[INFO 15:15:16] my_main Estimated time left: 5 minutes, 35 seconds. Time passed: 15 hours, 21 minutes, 37 seconds
+[INFO 15:15:48] my_main Recent Stats | t_env:    1996023 | Episode:    12801
+alpha:                     0.2645	alpha_loss:               -6.7449	battle_won_mean:           0.8957	central_loss:              0.0002
+comm_loss:                 0.0240	dead_allies_mean:          0.8870	dead_enemies_mean:         9.7739	delta_ally_mean:          99.0755
+delta_deaths_mean:        93.3043	delta_enemy_mean:        344.4160	ep_length_mean:           87.2783	epsilon:                   0.0500
+grad_norm:                 0.0276	loss:                      0.0246	mixer_norm:                0.0043	policy_loss:               0.0572
+q_taken_mean:              0.0425	qmix_loss:                 0.0005	reward_mean:               0.8787	reward_std:                0.1878
+target_mean:               0.0416	td_error_abs:              0.0165	test_battle_won_mean:      0.9062	test_dead_allies_mean:     1.0625
+test_dead_enemies_mean:    9.7812	test_delta_ally_mean:    111.5742	test_delta_deaths_mean:   92.5000	test_delta_enemy_mean:   344.8653
+test_ep_length_mean:      77.8750	test_reward_mean:          0.8605	test_reward_std:           0.1781	w_to_use:                  0.6292
+
+[INFO 15:18:09] my_main Saving models to results/models/ow_qmix_env=4_adam_td_lambda__2025-11-18_23-53-35/2000603
+RequestQuit command received.
+Closing Application...
+DataHandler: unable to parse websocket frame.
+CloseHandler: 127.0.0.1:47160 disconnected
+[INFO 15:20:30] absl Shutdown gracefully.
+[INFO 15:20:30] absl Shutdown with return code: -15
+[INFO 15:20:30] my_main Finished Training
+Exiting Main
+Stopping all threads
+Thread Thread-1 is alive! Is daemon: False
