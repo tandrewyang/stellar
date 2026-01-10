@@ -1,0 +1,158 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "pyyaml==6.0.3",
+      "sacred==0.8.7",
+      "torch==2.1.2+cu118"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_ec5789def5fb3c960c6d4be79feced67.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_a0959e544e275cedcb933293d93b61e8.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/run/run.py\", line 55, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/run/run.py\", line 198, in run_sequential\n    learner.train(episode_sample, runner.t_env, episode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/learners/reward_shaping_learner.py\", line 261, in train\n    shaped_rewards = self.shape_reward(\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/learners/reward_shaping_learner.py\", line 81, in shape_reward\n    shaped_rewards = self._apply_escape_survival_shaping(rewards, states, next_states, batch)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/learners/reward_shaping_learner.py\", line 175, in _apply_escape_survival_shaping\n    disperse_bonus = disperse_bonus.expand_as(rewards)\n",
+    "RuntimeError: expand(torch.cuda.FloatTensor{[128, 26, 1, 155]}, size=[128, 26, 1]): the number of sizes provided (3) must be greater or equal to the number of dimensions in the tensor (4)\n"
+  ],
+  "heartbeat": "2025-12-10T04:48:59.492705",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.19"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "jctq"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=jctq",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-12-10T04:48:28.014258",
+  "status": "FAILED",
+  "stop_time": "2025-12-10T04:48:59.497645"
+}

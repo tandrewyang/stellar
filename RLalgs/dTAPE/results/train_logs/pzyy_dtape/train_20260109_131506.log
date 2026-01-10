@@ -1,0 +1,12 @@
+/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/dependencies.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/components/episode_buffer.py:75: SyntaxWarning: "is" with a literal. Did you mean "=="?
+  if field_key is 'policy':
+Traceback (most recent call last):
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py", line 14, in <module>
+    from run import REGISTRY as run_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/__init__.py", line 4, in <module>
+    from .per_run import run as per_run
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/per_run.py", line 15, in <module>
+    from components.episode_buffer import ReplayBuffer, PrioritizedReplayBuffer
+ImportError: cannot import name 'PrioritizedReplayBuffer' from 'components.episode_buffer' (/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/components/episode_buffer.py)

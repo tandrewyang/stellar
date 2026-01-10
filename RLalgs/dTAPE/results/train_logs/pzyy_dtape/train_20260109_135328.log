@@ -1,0 +1,277 @@
+/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/dependencies.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[DEBUG 13:53:31] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.util sys.platform='linux', git_executable='git'
+[DEBUG 13:53:31] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.util sys.platform='linux', git_executable='git'
+[DEBUG 13:53:31] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:53:31] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
+[INFO 13:53:31] root Saving to FileStorageObserver in /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/results/sacred/pzyy/ow_qmix_env=4_adam_td_lambda.
+[DEBUG 13:53:33] pymarl Using capture mode "fd"
+[INFO 13:53:33] pymarl Running command 'my_main'
+[INFO 13:53:33] pymarl Started run with ID "8"
+[DEBUG 13:53:33] pymarl Starting Heartbeat
+[DEBUG 13:53:33] my_main Started
+[INFO 13:53:33] my_main Experiment Parameters:
+[INFO 13:53:33] my_main 
+
+{   'action_selector': 'epsilon_greedy',
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'alpha_init': -0.07,
+    'alpha_lr': '3e-4',
+    'batch_size': 128,
+    'batch_size_run': 1,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'c_beta': 1.0,
+    'central_action_embed': 1,
+    'central_agent': 'central_rnn',
+    'central_loss': 1,
+    'central_mac': 'basic_central_mac',
+    'central_mixer': 'ff',
+    'central_mixing_embed_dim': 256,
+    'central_rnn_hidden_dim': 64,
+    'checkpoint_path': '',
+    'comm': True,
+    'comm_beta': 0.001,
+    'comm_beta_end_decay': 50000000,
+    'comm_beta_start_decay': 20000000,
+    'comm_beta_target': '1e-2',
+    'comm_embed_dim': 3,
+    'comm_entropy_beta': '1e-6',
+    'comm_entropy_beta_end_decay': 50000000,
+    'comm_entropy_beta_start_decay': 20000000,
+    'comm_entropy_beta_target': '1e-4',
+    'comm_method': 'information_bottleneck_full',
+    'critic_agent': 'rnn_agent_n',
+    'critic_lr': 0.0005,
+    'critic_mac': 'cate_broadcast_comm_mac_full',
+    'cut_mu_rank_thres': 80.0,
+    'cut_mu_thres': 1.0,
+    'double_q': True,
+    'env': 'sc2_tactics',
+    'env_args': {   'continuing_episode': False,
+                    'debug': False,
+                    'difficulty': '7',
+                    'game_version': None,
+                    'heuristic_ai': False,
+                    'heuristic_rest': False,
+                    'map_name': 'pzyy',
+                    'move_amount': 2,
+                    'obs_all_health': True,
+                    'obs_instead_of_state': False,
+                    'obs_last_action': False,
+                    'obs_own_health': True,
+                    'obs_pathing_grid': True,
+                    'obs_terrain_height': True,
+                    'obs_timestep_number': False,
+                    'replay_dir': '',
+                    'replay_prefix': '',
+                    'reward_death_value': 10,
+                    'reward_defeat': 0,
+                    'reward_negative_scale': 0.5,
+                    'reward_only_positive': False,
+                    'reward_scale': True,
+                    'reward_scale_rate': 20,
+                    'reward_sparse': False,
+                    'reward_win': 200,
+                    'seed': 42,
+                    'state_last_action': True,
+                    'state_timestep_number': False,
+                    'step_mul': 8},
+    'epsilon_anneal_time': 100000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 0.995,
+    'evaluate': False,
+    'gamma': 0.99,
+    'gate_loss_beta': 1e-05,
+    'grad_norm_clip': 10,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'hysteretic_qmix': True,
+    'is_comm_beta_decay': False,
+    'is_comm_entropy_beta_decay': False,
+    'is_cur_mu': False,
+    'is_print': False,
+    'is_rank_cut_mu': False,
+    'label': 'default_label',
+    'learner': 'max_q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.001,
+    'mac': 'basic_mac_logits',
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'ow_qmix_env=4_adam_td_lambda',
+    'obs_agent_id': True,
+    'obs_last_action': True,
+    'only_downstream': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'p': 0.5,
+    'qmix_loss': 1,
+    'repeat_id': 1,
+    'rnn_hidden_dim': 64,
+    'run': 'default',
+    'runner': 'episode',
+    'runner_log_interval': 10000,
+    'save_model': True,
+    'save_model_interval': 500000,
+    'save_replay': False,
+    'seed': 42,
+    't_max': 2005000,
+    'target_update_interval': 200,
+    'td_lambda': 0.6,
+    'test_greedy': True,
+    'test_interval': 10000,
+    'test_nepisode': 32,
+    'use_IB': True,
+    'use_cuda': True,
+    'use_tensorboard': True,
+    'w': 0.5}
+
+--- PZYY Env Loaded. Move Amount: 4 ---
+381
+Mixer Size: 
+568.227K
+namespace(runner='episode', mac='basic_mac_logits', env='sc2_tactics', env_args={'continuing_episode': False, 'difficulty': '7', 'game_version': None, 'map_name': 'pzyy', 'move_amount': 2, 'obs_all_health': True, 'obs_instead_of_state': False, 'obs_last_action': False, 'obs_own_health': True, 'obs_pathing_grid': True, 'obs_terrain_height': True, 'obs_timestep_number': False, 'reward_death_value': 10, 'reward_defeat': 0, 'reward_negative_scale': 0.5, 'reward_only_positive': False, 'reward_scale': True, 'reward_scale_rate': 20, 'reward_sparse': False, 'reward_win': 200, 'replay_dir': '', 'replay_prefix': '', 'state_last_action': True, 'state_timestep_number': False, 'step_mul': 8, 'seed': 42, 'heuristic_ai': False, 'heuristic_rest': False, 'debug': False}, batch_size_run=1, test_nepisode=32, test_interval=10000, test_greedy=True, log_interval=10000, runner_log_interval=10000, learner_log_interval=10000, t_max=2005000, use_cuda=True, buffer_cpu_only=True, use_tensorboard=True, save_model=True, save_model_interval=500000, checkpoint_path='', evaluate=False, load_step=0, save_replay=False, local_results_path='results', gamma=0.99, batch_size=128, buffer_size=5000, lr=0.001, critic_lr=0.0005, optim_alpha=0.99, optim_eps=1e-05, grad_norm_clip=10, agent='rnn', rnn_hidden_dim=64, obs_agent_id=True, obs_last_action=True, repeat_id=1, label='default_label', run='default', action_selector='epsilon_greedy', epsilon_start=0.995, epsilon_finish=0.05, epsilon_anneal_time=100000, critic_mac='cate_broadcast_comm_mac_full', critic_agent='rnn_agent_n', comm=True, comm_embed_dim=3, comm_method='information_bottleneck_full', c_beta=1.0, comm_beta=0.001, comm_entropy_beta='1e-6', gate_loss_beta=1e-05, only_downstream=False, use_IB=True, is_print=False, is_comm_beta_decay=False, comm_beta_start_decay=20000000, comm_beta_target='1e-2', comm_beta_end_decay=50000000, is_comm_entropy_beta_decay=False, comm_entropy_beta_start_decay=20000000, comm_entropy_beta_target='1e-4', comm_entropy_beta_end_decay=50000000, is_cur_mu=False, is_rank_cut_mu=False, cut_mu_thres=1.0, cut_mu_rank_thres=80.0, target_update_interval=200, agent_output_type='q', learner='max_q_learner', double_q=True, mixer='qmix', mixing_embed_dim=32, hypernet_layers=2, hypernet_embed=64, central_loss=1, qmix_loss=1, w=0.5, hysteretic_qmix=True, central_mixing_embed_dim=256, central_action_embed=1, central_mac='basic_central_mac', central_agent='central_rnn', central_rnn_hidden_dim=64, central_mixer='ff', td_lambda=0.6, alpha_lr='3e-4', alpha_init=-0.07, p=0.5, name='ow_qmix_env=4_adam_td_lambda', seed=42, device='cuda', unique_token='ow_qmix_env=4_adam_td_lambda__2026-01-09_13-53-33', n_agents=11, n_actions=32, state_shape=579, accumulated_episodes=None)
+[INFO 13:53:35] my_main Beginning training for 2005000 timesteps
+[INFO 13:53:35] absl Launching SC2: /share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 35517 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-1fl7p_s0/
+[INFO 13:53:35] absl Connecting to: ws://127.0.0.1:35517/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 35517 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-1fl7p_s0/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:53:36] absl Connecting to: ws://127.0.0.1:35517/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:35517
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:53:37] absl Connecting to: ws://127.0.0.1:35517/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:47024 accepted
+ReadyHandler: 127.0.0.1:47024 ready
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Error signal: '11'
+Backtrace:
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x65e743]
+/lib/x86_64-linux-gnu/libc.so.6(+0x42520)[0x7f3762b32520]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x20dfbc2]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x23dc439]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x23de3b3]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x23defec]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x23ded53]
+/lib/x86_64-linux-gnu/libc.so.6(+0x45495)[0x7f3762b35495]
+/lib/x86_64-linux-gnu/libc.so.6(on_exit+0x0)[0x7f3762b35610]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x6855ce]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x65fabc]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0xf0214c]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x13a7443]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x163470a]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x13953a6]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x13a12fa]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x139d984]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x1b934b2]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x5f8825]
+/lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7f3762b19d90]
+/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7f3762b19e40]
+/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64[0x5f7f59]
+[DEBUG 13:53:40] pymarl Stopping Heartbeat
+[ERROR 13:53:40] pymarl Failed after 0:00:07!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 62, in catch_websocket_connection_errors
+    yield
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 179, in _read
+    response_str = self._sock.recv()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_core.py", line 395, in recv
+    opcode, data = self.recv_data()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_core.py", line 423, in recv_data
+    opcode, frame = self.recv_data_frame(control_frame)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_core.py", line 444, in recv_data_frame
+    frame = self.recv_frame()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_core.py", line 485, in recv_frame
+    return self.frame_buffer.recv_frame()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_abnf.py", line 375, in recv_frame
+    self.recv_header()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_abnf.py", line 329, in recv_header
+    header = self.recv_strict(2)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_abnf.py", line 418, in recv_strict
+    bytes_ = self.recv(min(16384, shortage))
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_core.py", line 581, in _recv
+    return recv(self.sock, bufsize)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/websocket/_socket.py", line 143, in recv
+    raise WebSocketConnectionClosedException("Connection to remote host was lost.")
+websocket._exceptions.WebSocketConnectionClosedException: Connection to remote host was lost.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 147, in send
+    res = self.send_req(req)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 127, in send_req
+    return self.read()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/stopwatch.py", line 205, in _stopwatch
+    return func(*args, **kwargs)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 98, in read
+    response = self._read()
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 178, in _read
+    with catch_websocket_connection_errors():
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 64, in catch_websocket_connection_errors
+    raise ConnectionError("Connection already closed. SC2 probably crashed. "
+pysc2.lib.protocol.ConnectionError: Connection already closed. SC2 probably crashed. Check the error log.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py", line 38, in my_main
+    run_REGISTRY[_config['run']](_run, config, _log)
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py", line 55, in run
+    run_sequential(args=args, logger=logger)
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py", line 181, in run_sequential
+    episode_batch = runner.run(test_mode=False)
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py", line 49, in run
+    self.reset()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py", line 45, in reset
+    self.env.reset()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/star36env_pzyy.py", line 54, in reset
+    res = super().reset()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py", line 395, in reset
+    self._launch()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py", line 367, in _launch
+    self._controller.join_game(join)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/remote_controller.py", line 95, in _valid_status
+    return func(self, *args, **kwargs)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/remote_controller.py", line 70, in _check_error
+    return check_error(func(*args, **kwargs), error_enum)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/stopwatch.py", line 205, in _stopwatch
+    return func(*args, **kwargs)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/remote_controller.py", line 205, in join_game
+    return self._client.send(join_game=req_join_game)
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/lib/protocol.py", line 149, in send
+    raise ConnectionError("Error during %s: %s" % (name, e))
+pysc2.lib.protocol.ConnectionError: Error during join_game: Connection already closed. SC2 probably crashed. Check the error log.
+
+[INFO 13:53:40] absl Shutdown gracefully.
+[INFO 13:53:40] absl Shutdown with return code: -11

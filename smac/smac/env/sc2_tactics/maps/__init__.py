@@ -18,6 +18,8 @@ MAP_NAME_ALIASES = {
     "wwjz": "wwjz_te",
     "wzsy": "wzsy_te",
     "yqgz": "yqgz_te",
+    "pzyy": "pzyy_te",
+    "ldtj": "ldtj_te",
 }
 
 def get_map_params(map_name):

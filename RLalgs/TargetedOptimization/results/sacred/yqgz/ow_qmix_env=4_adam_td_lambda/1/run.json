@@ -1,0 +1,159 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "PyYAML==6.0.2",
+      "sacred==0.8.7",
+      "torch==2.9.1"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "53abf5ac7b1c2eefac8ad8f14b349799a4d709d5",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "53abf5ac7b1c2eefac8ad8f14b349799a4d709d5",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_3992b8ec14bf1a440a6c16ee0a45870f.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_ce9a261c391cbeae67129d3d806d06da.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 54, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 197, in run_sequential\n    learner.train(episode_sample, runner.t_env, episode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/learners/max_q_learner.py\", line 271, in train\n    policy_loss.backward(retain_graph=True)\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\", line 625, in backward\n    torch.autograd.backward(\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\", line 354, in backward\n    _engine_run_backward(\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\", line 841, in _engine_run_backward\n    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+    "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.33 GiB. GPU 0 has a total capacity of 79.11 GiB of which 495.31 MiB is free. Process 1784670 has 520.00 MiB memory in use. Process 2064887 has 520.00 MiB memory in use. Process 3867039 has 15.35 GiB memory in use. Process 3870381 has 11.70 GiB memory in use. Process 3870806 has 7.13 GiB memory in use. Process 3871367 has 1.17 GiB memory in use. Process 3871676 has 3.84 GiB memory in use. Process 3872425 has 4.56 GiB memory in use. Process 3875174 has 7.88 GiB memory in use. Process 3875597 has 3.79 GiB memory in use. Process 3876427 has 22.12 GiB memory in use. Of the allocated memory 20.04 GiB is allocated by PyTorch, and 1.36 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n"
+  ],
+  "heartbeat": "2025-11-18T16:16:33.018282",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.12.2"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "yqgz"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=yqgz",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-11-18T15:53:54.249625",
+  "status": "FAILED",
+  "stop_time": "2025-11-18T16:16:33.028877"
+}

@@ -804,6 +804,61 @@ map_param_registry = {
         "unit_type_bits": 2,
         "map_type": "zwsj",
     },
+
+    # PZYY：抛砖引玉 - Baiting with Fake Bait
+    "pzyy_te": {
+        "n_agents": 11,
+        "n_enemies": 25,
+        "limit": 100,
+        "a_race": "T",
+        "b_race": "Z",
+        "unit_type_bits": 3,
+        "map_type": "pzyy",
+        "support_info": {
+            "n_actions_no_attack": 7,
+            "n_actions_move": 4,
+            "action_set": {
+                "move": 16,
+                "attack": 23,
+                "stop": 4,
+                "BurrowDown": 2095,
+                "BurrowUp": 2097,
+            },
+            "unit_id_dict": {
+                "marine": 48,
+                "widow_mine": 498,
+                "widow_mine_burrowed": 500,
+                "zergling": 105,
+                "overseer": 129
+            },
+        },
+    },
+
+    # LDTJ：李代桃僵 - Sacrificing the Plum for the Peach
+    "ldtj_te": {
+        "n_agents": 7,
+        "n_enemies": 5,
+        "limit": 120,
+        "a_race": "Z",
+        "b_race": "T",
+        "unit_type_bits": 2,
+        "map_type": "ldtj",
+        "support_info": {
+            "n_actions_no_attack": 6,
+            "n_actions_move": 4,
+            "action_set": {
+                "move": 16,
+                "attack": 23,
+                "stop": 4,
+            },
+            "unit_id_dict": {
+                "mutalisk": 108,
+                "spore_crawler": 98,
+                "widow_mine": 498,
+                "siege_tank_sieged": 33
+            }
+        },
+    },
 }
 
 def get_tactics_map_registry():

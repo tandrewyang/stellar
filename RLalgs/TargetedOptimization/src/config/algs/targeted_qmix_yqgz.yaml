@@ -1,0 +1,79 @@
+# 针对yqgz地图的优化配置
+# yqgz特点: 24 agents vs 8 enemies, 150步
+# 优化方向: 大规模协调
+
+action_selector: "epsilon_greedy"
+epsilon_start: 0.995
+epsilon_finish: 0.05
+epsilon_anneal_time: 120000  # 更长的探索时间（24 vs 8需要更多探索）
+
+runner: "episode"
+batch_size_run: 1
+buffer_size: 5000
+
+batch_size: 64  # 较小批次（大规模单位）
+
+critic_mac: "cate_broadcast_comm_mac_full"
+critic_agent: "rnn_agent_n"
+
+comm: True
+comm_embed_dim: 4  # 更大的通信维度（需要更多协调）
+comm_method: "information_bottleneck_full"
+c_beta: 1.
+comm_beta: 0.001
+comm_entropy_beta: 1e-6
+gate_loss_beta: 0.00001
+only_downstream: False
+use_IB: True
+is_print: False
+
+target_update_interval: 200
+t_max: 2005000
+
+mac: "basic_mac_logits"
+agent: "rnn"
+agent_output_type: "q"
+learner: "reward_shaping_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 128  # 更大的mixing维度（大规模协调）
+hypernet_layers: 2
+hypernet_embed: 256
+
+# 针对yqgz的奖励塑形（重新设计：引诱+集中攻击策略）
+# 战术核心：先用少量的部队送死引诱敌人前进，然后大量的部队趁距离接近消灭敌人
+# 24 vs 8，150步，Z vs T，我方24个zergling，敌方8个（marine + siegeTank）
+# 新设计：更强调引诱行为、集中攻击和战术协调
+reward_shaping_enabled: True
+reward_shaping_type: "potential_based"  # 代码会根据map_name自动识别
+reward_shaping_weight: 0.6  # 增加塑形权重（从0.5增加到0.6，更强的诱导性）
+reward_shaping_decay: 0.9998  # 更慢的衰减（保持塑形效果更久）
+survival_reward_weight: 3.5  # 增加生存奖励权重（从3.0增加到3.5）
+sacrifice_lure_weight: 5.5  # 大幅增加送死引诱奖励权重（从4.5增加到5.5，更强调引诱行为）
+main_force_attack_weight: 6.5  # 大幅增加大量部队攻击奖励权重（从5.0增加到6.5，更强调集中攻击）
+distance_advantage_weight: 5.0  # 大幅增加距离优势奖励权重（从4.0增加到5.0）
+tactical_coordination_weight: 6.0  # 大幅增加战术协调奖励权重（从4.5增加到6.0）
+enemy_advance_weight: 4.5  # 敌人前进奖励权重（从3.5增加到4.5）
+enemy_kill_weight: 5.0  # 敌方单位消灭奖励权重（新增）
+close_range_attack_weight: 6.0  # 近距离攻击奖励权重（新增）
+damage_reward_factor: 2.2  # 伤害奖励放大因子（从1.8增加到2.2，220%）
+
+central_loss: 1
+qmix_loss: 1
+w: 0.5
+hysteretic_qmix: True
+
+central_mixing_embed_dim: 512  # 更大的central mixing（大规模）
+central_action_embed: 1
+central_mac: "basic_central_mac"
+central_agent: "central_rnn"
+central_rnn_hidden_dim: 128  # 更大的hidden维度
+central_mixer: "ff"
+td_lambda: 0.6
+lr: 0.001  # 标准学习率（大规模协调需要平衡）
+
+alpha_lr: 3e-4
+alpha_init: -0.07
+
+p: 0.5
+name: "targeted_qmix_yqgz_env=4_adam_td_lambda"

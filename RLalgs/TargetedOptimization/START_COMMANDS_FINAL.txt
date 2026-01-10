@@ -1,0 +1,100 @@
+==========================================
+针对性优化算法 - 最终启动命令
+==========================================
+
+✅ 已修复:
+  - main.py文件已存在
+  - 配置文件已创建并更新
+  - 训练脚本支持前台实时显示输出
+
+GPU分配:
+  GPU4: jctq (时间感知+战术规划+机制感知)
+  GPU5: swct (机制感知+战术规划)
+  GPU6: dhls (机制感知)
+  GPU7: yqgz (大规模协调)
+
+==========================================
+方式1: 使用启动脚本（推荐，前台运行）
+==========================================
+
+# jctq (GPU4)
+cd /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization
+bash run_jctq_gpu4.sh
+
+# swct (GPU5)
+cd /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization
+bash run_swct_gpu5.sh
+
+# dhls (GPU6)
+cd /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization
+bash run_dhls_gpu6.sh
+
+# yqgz (GPU7)
+cd /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization
+bash run_yqgz_gpu7.sh
+
+==========================================
+方式2: 直接命令（前台运行，实时显示）
+==========================================
+
+cd /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization
+
+# jctq (GPU4) - 前台运行，实时显示
+CUDA_VISIBLE_DEVICES=4 python3 -u src/main.py \
+    --config=targeted_qmix_jctq \
+    --env-config=sc2te \
+    with env_args.map_name=jctq seed=42 t_max=2005000 \
+    batch_size_run=1 use_tensorboard=True save_model=True \
+    save_model_interval=500000 2>&1 | tee ../results/train_logs/jctq_targeted_qmix_jctq/train.log
+
+# swct (GPU5) - 前台运行，实时显示
+CUDA_VISIBLE_DEVICES=5 python3 -u src/main.py \
+    --config=targeted_qmix_swct \
+    --env-config=sc2te \
+    with env_args.map_name=swct seed=42 t_max=2005000 \
+    batch_size_run=1 use_tensorboard=True save_model=True \
+    save_model_interval=500000 2>&1 | tee ../results/train_logs/swct_targeted_qmix_swct/train.log
+
+# dhls (GPU6) - 前台运行，实时显示
+CUDA_VISIBLE_DEVICES=6 python3 -u src/main.py \
+    --config=targeted_qmix_dhls \
+    --env-config=sc2te \
+    with env_args.map_name=dhls seed=42 t_max=2005000 \
+    batch_size_run=1 use_tensorboard=True save_model=True \
+    save_model_interval=500000 2>&1 | tee ../results/train_logs/dhls_targeted_qmix_dhls/train.log
+
+# yqgz (GPU7) - 前台运行，实时显示
+CUDA_VISIBLE_DEVICES=7 python3 -u src/main.py \
+    --config=targeted_qmix_yqgz \
+    --env-config=sc2te \
+    with env_args.map_name=yqgz seed=42 t_max=2005000 \
+    batch_size_run=1 use_tensorboard=True save_model=True \
+    save_model_interval=500000 2>&1 | tee ../results/train_logs/yqgz_targeted_qmix_yqgz/train.log
+
+==========================================
+关键说明:
+==========================================
+✅ 使用 python3 -u 参数：确保无缓冲输出，实时显示训练进度
+✅ 使用 tee 命令：同时输出到终端和日志文件
+✅ 前台运行：可以实时看到训练输出，按 Ctrl+C 停止
+✅ 日志保存：所有输出同时保存到日志文件
+
+==========================================
+检查运行状态:
+==========================================
+
+# 检查进程
+ps aux | grep "targeted_qmix"
+
+# 检查GPU使用
+nvidia-smi
+
+# 实时查看日志（如果后台运行）
+tail -f ../results/train_logs/jctq_targeted_qmix_jctq/train.log
+tail -f ../results/train_logs/swct_targeted_qmix_swct/train.log
+tail -f ../results/train_logs/dhls_targeted_qmix_dhls/train.log
+tail -f ../results/train_logs/yqgz_targeted_qmix_yqgz/train.log
+
+==========================================
+
+

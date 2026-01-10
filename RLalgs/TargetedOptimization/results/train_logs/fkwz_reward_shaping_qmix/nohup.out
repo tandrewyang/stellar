@@ -1,0 +1,17 @@
+/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/dependencies.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/main.py", line 15, in <module>
+    from run import REGISTRY as run_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/run/__init__.py", line 1, in <module>
+    from .run import run as default_run
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/run/run.py", line 12, in <module>
+    from learners import REGISTRY as le_REGISTRY
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/learners/__init__.py", line 1, in <module>
+    from learners.q_learner import QLearner
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/learners/q_learner.py", line 2, in <module>
+    from components.episode_buffer import EpisodeBatch
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/components/episode_buffer.py", line 115
+    v = th.tensor(v, dtype=dtype, device=self.device)
+    ^
+IndentationError: expected an indented block after 'else' statement on line 114

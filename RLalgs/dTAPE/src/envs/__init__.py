@@ -13,6 +13,8 @@ from smac.env.sc2_tactics.star36env_swct import SC2TacticsSWCTEnv
 from smac.env.sc2_tactics.star36env_jdsr import SC2TacticsJDSREnv
 from smac.env.sc2_tactics.star36env_fkwz import SC2TacticsFKWZEnv
 from smac.env.sc2_tactics.star36env_gmzz import SC2TacticsGMZZEnv
+from smac.env.sc2_tactics.star36env_pzyy import SC2TacticsPZYYEnv
+from smac.env.sc2_tactics.star36env_ldtj import SC2TacticsLDTJEnv
 import sys
 import os
 
@@ -45,6 +47,10 @@ def env_te(env, **kwargs) -> MultiAgentEnv:
         return SC2TacticsFKWZEnv(**kwargs)
     elif map_name.startswith("gmzz"):
         return SC2TacticsGMZZEnv(**kwargs)
+    elif map_name.startswith("pzyy"):
+        return SC2TacticsPZYYEnv(**kwargs)
+    elif map_name.startswith("ldtj"):
+        return SC2TacticsLDTJEnv(**kwargs)
     else:
         return env(**kwargs)
 

@@ -107,12 +107,12 @@ class EpisodeBatch:
                 while isinstance(v, (tuple, list)) and len(v) == 1 and isinstance(v[0], (tuple, list, np.ndarray)):
                     v = v[0]
                 # If still a tuple/list, convert to tensor
-                if isinstance(v, (tuple, list)):
-                    v = th.tensor(v, dtype=dtype, device=self.device)
-                else:
-                    v = th.tensor(v, dtype=dtype, device=self.device)
+            if isinstance(v, (tuple, list)):
+                v = th.tensor(v, dtype=dtype, device=self.device)
             else:
                 v = th.tensor(v, dtype=dtype, device=self.device)
+        else:
+            v = th.tensor(v, dtype=dtype, device=self.device)
             
             # Try to reshape if dimensions don't match but total elements match
             dest_shape = target[k][_slices].shape

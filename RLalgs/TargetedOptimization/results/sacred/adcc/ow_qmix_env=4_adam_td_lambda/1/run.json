@@ -1,0 +1,146 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "PyYAML==6.0.2",
+      "sacred==0.8.7",
+      "torch==2.9.1"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_f688ce7614ca39ac9b98bb89a571469a.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_ce9a261c391cbeae67129d3d806d06da.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py\", line 40, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 48, in run\n    logger.setup_tb(tb_exp_direc)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/utils/logging.py\", line 18, in setup_tb\n    from tensorboard_logger import configure, log_value\n",
+    "ModuleNotFoundError: No module named 'tensorboard_logger'\n"
+  ],
+  "heartbeat": "2025-11-18T05:21:05.165179",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.12.2"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "adcc"
+      },
+      "local_results_path": "../../results/adcc_d_tape_seed42",
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=adcc",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000",
+        "local_results_path=../../results/adcc_d_tape_seed42"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-11-18T05:21:05.138574",
+  "status": "FAILED",
+  "stop_time": "2025-11-18T05:21:05.168871"
+}

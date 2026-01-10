@@ -1084,6 +1084,11 @@ class SC2TacticsEnv(MultiAgentEnv):
             al_ids = [
                 al_id for al_id in range(self.n_agents) if al_id != agent_id
             ]
+            # Limit al_ids to the size of ally_feats to prevent IndexError
+            # ally_feats size is (n_agents_max - 1, nf_al), so we can only have at most n_agents_max - 1 allies
+            max_ally_feats_size = ally_feats.shape[0] if len(ally_feats.shape) > 0 and ally_feats.shape[0] > 0 else len(al_ids)
+            if len(al_ids) > max_ally_feats_size:
+                al_ids = al_ids[:max_ally_feats_size]
             for i, al_id in enumerate(al_ids):
 
                 al_unit = self.get_unit_by_id(al_id)

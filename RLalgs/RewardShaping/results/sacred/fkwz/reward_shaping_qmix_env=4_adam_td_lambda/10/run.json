@@ -1,0 +1,159 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "pyyaml==6.0.3",
+      "sacred==0.8.7",
+      "torch==2.1.2+cu118"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_ec5789def5fb3c960c6d4be79feced67.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_a0959e544e275cedcb933293d93b61e8.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/run/run.py\", line 55, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/run/run.py\", line 181, in run_sequential\n    episode_batch = runner.run(test_mode=False)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/RewardShaping/src/runners/episode_runner.py\", line 60, in run\n    \"obs\": [self.env.get_obs()]\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/star36env_fkwz.py\", line 319, in get_obs\n    agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents_max)]\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/star36env_fkwz.py\", line 319, in <listcomp>\n    agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents_max)]\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py\", line 1097, in get_obs_agent\n    ally_feats[i, 0] = 1  # visible\n",
+    "IndexError: index 8 is out of bounds for axis 0 with size 8\n"
+  ],
+  "heartbeat": "2025-12-05T13:03:35.126326",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.19"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "fkwz"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=fkwz",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-12-05T10:38:52.787380",
+  "status": "FAILED",
+  "stop_time": "2025-12-05T13:03:35.146714"
+}

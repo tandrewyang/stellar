@@ -1,0 +1,75 @@
+# 针对swct地图的优化配置 - "上屋抽梯"策略
+# swct特点: 5 agents vs 11 enemies, 200步, 有WarpPrism和ForceField机制
+# 优化方向: 诱敌深入 + 力场阻挡 + 传送撤退
+# 战术核心: 把对方引到高处然后撤掉梯子，让对方无法下来
+
+action_selector: "epsilon_greedy"
+epsilon_start: 0.995
+epsilon_finish: 0.05
+epsilon_anneal_time: 120000  # 更长的探索时间（5 vs 11需要更多探索）
+
+runner: "episode"
+batch_size_run: 1
+buffer_size: 5000
+
+batch_size: 128
+
+critic_mac: "cate_broadcast_comm_mac_full"
+critic_agent: "rnn_agent_n"
+
+comm: True
+comm_embed_dim: 3
+comm_method: "information_bottleneck_full"
+c_beta: 1.
+comm_beta: 0.001
+comm_entropy_beta: 1e-6
+gate_loss_beta: 0.00001
+only_downstream: False
+use_IB: True
+is_print: False
+
+target_update_interval: 200
+t_max: 2005000
+
+mac: "basic_mac_logits"
+agent: "rnn"
+agent_output_type: "q"
+learner: "reward_shaping_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 64
+hypernet_layers: 2
+hypernet_embed: 128
+
+# 针对swct的"上屋抽梯"奖励塑形（增强版）
+# 5 vs 11劣势，需要强烈的生存奖励和机制使用奖励
+reward_shaping_enabled: True
+reward_shaping_type: "lure_block_retreat"  # 诱敌-阻挡-撤退型
+reward_shaping_weight: 0.2  # 增加塑形权重（从默认0.1增加到0.2）
+reward_shaping_decay: 0.999  # 更慢的衰减（保持塑形效果更久）
+lure_reward_weight: 1.5  # 增加诱敌奖励权重
+forcefield_reward_weight: 2.5  # 增加力场奖励权重（核心机制）
+warp_prism_reward_weight: 2.0  # 增加传送门奖励权重
+tactical_positioning_weight: 1.2  # 增加战术位置权重
+phase_based_reward: True  # 启用分阶段奖励
+
+central_loss: 1
+qmix_loss: 1
+w: 0.5
+hysteretic_qmix: True
+
+central_mixing_embed_dim: 256
+central_action_embed: 1
+central_mac: "basic_central_mac"
+central_agent: "central_rnn"
+central_rnn_hidden_dim: 64
+central_mixer: "ff"
+td_lambda: 0.6
+lr: 0.0012  # 稍大的学习率（5 vs 11需要更快学习）
+
+alpha_lr: 3e-4
+alpha_init: -0.07
+
+p: 0.5
+name: "targeted_qmix_swct_lure_block_retreat"
+

@@ -1,0 +1,73 @@
+# 针对jctq地图的优化配置 - "金蝉脱壳"策略
+# jctq特点: 4 agents vs 9 enemies, 45步, 有Burrow机制, 至少存活1个
+# 优化方向: 逃脱优先 + 生存优先 + 分散隐藏
+# 战术核心: 像蝉脱壳一样，留下假象，自己脱身
+
+action_selector: "epsilon_greedy"
+epsilon_start: 0.995
+epsilon_finish: 0.05
+epsilon_anneal_time: 30000  # 更快的探索衰减（45步需要快速决策）
+
+runner: "episode"
+batch_size_run: 1
+buffer_size: 5000
+
+batch_size: 128
+
+critic_mac: "cate_broadcast_comm_mac_full"
+critic_agent: "rnn_agent_n"
+
+comm: True
+comm_embed_dim: 3
+comm_method: "information_bottleneck_full"
+c_beta: 1.
+comm_beta: 0.001
+comm_entropy_beta: 1e-6
+gate_loss_beta: 0.00001
+only_downstream: False
+use_IB: True
+is_print: False
+
+target_update_interval: 200
+t_max: 2005000
+
+mac: "basic_mac_logits"
+agent: "rnn"
+agent_output_type: "q"
+learner: "reward_shaping_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 64
+hypernet_layers: 2
+hypernet_embed: 128
+
+# 针对jctq的"金蝉脱壳"奖励塑形
+reward_shaping_enabled: True
+reward_shaping_type: "escape_survival"  # 逃脱生存型
+survival_reward_weight: 2.0  # 存活奖励权重（大幅提高）
+escape_reward_weight: 1.5  # 逃脱奖励权重
+disperse_reward_weight: 0.8  # 分散奖励权重
+kill_reward_weight: 0.3  # 击杀奖励权重（降低，避免暴露位置）
+time_critical_weight: 1.2  # 时间紧迫性权重
+reward_shaping_decay: 0.99
+
+central_loss: 1
+qmix_loss: 1
+w: 0.5
+hysteretic_qmix: True
+
+central_mixing_embed_dim: 256
+central_action_embed: 1
+central_mac: "basic_central_mac"
+central_agent: "central_rnn"
+central_rnn_hidden_dim: 64
+central_mixer: "ff"
+td_lambda: 0.6
+lr: 0.0008  # 稍大的学习率（快速学习逃脱策略）
+
+alpha_lr: 3e-4
+alpha_init: -0.07
+
+p: 0.5
+name: "targeted_qmix_jctq_escape_survival"
+

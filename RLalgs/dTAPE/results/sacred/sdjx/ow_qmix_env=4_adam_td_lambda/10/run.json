@@ -1,0 +1,158 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "pyyaml==6.0.3",
+      "sacred==0.8.7",
+      "torch==2.1.2+cu118"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_cee6999434520d80fe045743a2c6c88c.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_ce9a261c391cbeae67129d3d806d06da.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py\", line 38, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 55, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 181, in run_sequential\n    episode_batch = runner.run(test_mode=False)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py\", line 67, in run\n    actions = self.mac.select_actions(self.batch, t_ep=self.t, t_env=self.t_env, test_mode=test_mode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/controllers/basic_controller_logits.py\", line 24, in select_actions\n    chosen_actions = self.action_selector.select_action(agent_outputs[bs], avail_actions[bs], t_env, test_mode=test_mode)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/components/action_selectors.py\", line 138, in select_action\n    random_actions = Categorical(avail_actions.float()).sample().long()\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/distributions/categorical.py\", line 70, in __init__\n    super().__init__(batch_shape, validate_args=validate_args)\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/distributions/distribution.py\", line 68, in __init__\n    raise ValueError(\n",
+    "ValueError: Expected parameter probs (Tensor of shape (1, 18, 23)) of distribution Categorical(probs: torch.Size([1, 18, 23])) to satisfy the constraint Simplex(), but found invalid values:\ntensor([[[nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan],\n         [nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan, nan]]],\n       device='cuda:0')\n"
+  ],
+  "heartbeat": "2026-01-09T06:01:23.683734",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.19"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "sdjx"
+      },
+      "log_interval": 5000,
+      "seed": 42,
+      "t_max": 50000,
+      "test_interval": 10000
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=sdjx",
+        "seed=42",
+        "t_max=50000",
+        "batch_size_run=1",
+        "test_interval=10000",
+        "log_interval=5000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2026-01-09T06:01:13.011629",
+  "status": "FAILED",
+  "stop_time": "2026-01-09T06:01:23.685731"
+}

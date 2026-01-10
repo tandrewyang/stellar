@@ -1,0 +1,80 @@
+# 针对tlhz地图的优化配置 - "偷梁换柱"策略
+# tlhz特点: 4 agents vs 2 enemies, 300步, 有建造机制（BuildHatchery, BuildChamber, TrainZerg）
+# 优化方向: 长期规划 + 建造奖励 + 训练奖励
+# 战术核心: 通过建造和训练单位来获得优势
+
+action_selector: "epsilon_greedy"
+epsilon_start: 0.995
+epsilon_finish: 0.05
+epsilon_anneal_time: 150000  # 更长的探索时间（300步需要更多探索）
+
+runner: "episode"
+batch_size_run: 1
+buffer_size: 5000
+
+batch_size: 128
+
+critic_mac: "cate_broadcast_comm_mac_full"
+critic_agent: "rnn_agent_n"
+
+comm: True
+comm_embed_dim: 3
+comm_method: "information_bottleneck_full"
+c_beta: 1.
+comm_beta: 0.001
+comm_entropy_beta: 1e-6
+gate_loss_beta: 0.00001
+only_downstream: False
+use_IB: True
+is_print: False
+
+target_update_interval: 200
+t_max: 2005000
+
+mac: "basic_mac_logits"
+agent: "rnn"
+agent_output_type: "q"
+learner: "reward_shaping_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 64
+hypernet_layers: 2
+hypernet_embed: 128
+
+# 针对tlhz的"偷梁换柱"奖励塑形（孵化巢暴露+集中攻击策略）
+# 战术核心：把工蜂做成孵化巢暴露在光子炮台下，在被击碎那一刻将所有兵力全部集中攻击光子炮台
+# 4 vs 2，300步，需要强烈的建造、暴露、被击碎检测、集中攻击奖励
+# 重新设计：更精确的检测机制，更强的奖励信号，新增敌方单位消灭奖励
+reward_shaping_enabled: True
+reward_shaping_type: "potential_based"  # 代码会根据map_name自动识别
+reward_shaping_weight: 0.6  # 大幅增加塑形权重（从0.5增加到0.6）
+reward_shaping_decay: 0.9999  # 更慢的衰减（从0.9998增加到0.9999）
+survival_reward_weight: 3.5  # 大幅增加生存奖励权重（从3.0增加到3.5）
+build_hatchery_weight: 6.0  # 大幅增加建造孵化巢奖励权重（从5.0增加到6.0）
+expose_weight: 5.0  # 大幅增加暴露奖励权重（从4.0增加到5.0）
+shatter_detection_weight: 6.5  # 大幅增加被击碎检测奖励权重（从5.5增加到6.5）
+concentrated_attack_weight: 6.5  # 大幅增加集中攻击奖励权重（从5.5增加到6.5）
+timing_window_weight: 7.5  # 大幅增加时间窗口奖励权重（从6.5增加到7.5）
+train_weight: 4.0  # 大幅增加训练奖励权重（从3.0增加到4.0）
+damage_reward_factor: 2.5  # 伤害奖励放大因子（从2.0增加到2.5，250%）
+
+central_loss: 1
+qmix_loss: 1
+w: 0.5
+hysteretic_qmix: True
+
+central_mixing_embed_dim: 256
+central_action_embed: 1
+central_mac: "basic_central_mac"
+central_agent: "central_rnn"
+central_rnn_hidden_dim: 64
+central_mixer: "ff"
+td_lambda: 0.6
+lr: 0.001  # 标准学习率（长期规划需要稳定）
+
+alpha_lr: 3e-4
+alpha_init: -0.07
+
+p: 0.5
+name: "targeted_qmix_tlhz_long_term_planning"
+

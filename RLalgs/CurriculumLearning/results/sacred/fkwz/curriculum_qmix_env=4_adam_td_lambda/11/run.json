@@ -34,7 +34,18 @@
       ]
     ]
   },
-  "heartbeat": "2025-12-05T04:51:48.952857",
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/run/run.py\", line 55, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/run/run.py\", line 181, in run_sequential\n    episode_batch = runner.run(test_mode=False)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/CurriculumLearning/src/runners/episode_runner.py\", line 58, in run\n    \"state\": [self.env.get_state()],\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py\", line 1186, in get_state\n    state_dict = self.get_state_dict()\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/star36env_fkwz.py\", line 350, in get_state_dict\n    ally_state[al_id, 0] = (\n",
+    "IndexError: index 9 is out of bounds for axis 0 with size 9\n"
+  ],
+  "heartbeat": "2025-12-05T05:14:49.460157",
   "host": {
     "ENV": {},
     "cpu": "Intel(R) Xeon(R) Platinum 8468",
@@ -142,5 +153,6 @@
   "resources": [],
   "result": null,
   "start_time": "2025-12-05T03:24:45.843150",
-  "status": "RUNNING"
+  "status": "FAILED",
+  "stop_time": "2025-12-05T05:14:49.480925"
 }

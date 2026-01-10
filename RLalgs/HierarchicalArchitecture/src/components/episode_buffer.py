@@ -112,7 +112,7 @@ class EpisodeBatch:
                 else:
                     v = th.tensor(v, dtype=dtype, device=self.device)
             else:
-                v = th.tensor(v, dtype=dtype, device=self.device)
+            v = th.tensor(v, dtype=dtype, device=self.device)
             
             # Try to reshape if dimensions don't match but total elements match
             dest_shape = target[k][_slices].shape

@@ -1,0 +1,160 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "PyYAML==6.0.2",
+      "sacred==0.8.7",
+      "torch==2.9.1"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "53abf5ac7b1c2eefac8ad8f14b349799a4d709d5",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "53abf5ac7b1c2eefac8ad8f14b349799a4d709d5",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_3992b8ec14bf1a440a6c16ee0a45870f.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_ce9a261c391cbeae67129d3d806d06da.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 54, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py\", line 180, in run_sequential\n    episode_batch = runner.run(test_mode=False)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py\", line 49, in run\n    self.reset()\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py\", line 45, in reset\n    self.env.reset()\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py\", line 386, in reset\n    self._launch()\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py\", line 342, in _launch\n    map_data=self._run_config.map_data(_map.path),\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+    "  File \"/root/miniconda3/lib/python3.12/site-packages/pysc2/run_configs/lib.py\", line 142, in map_data\n    raise ValueError(f\"Map {map_name} not found in {self.data_dir}/Maps.\")\n",
+    "ValueError: Map SMAC_Maps/dhls.SC2Map not found in /share/project/ytz/StarCraftII/Maps.\n"
+  ],
+  "heartbeat": "2025-11-18T15:53:16.071013",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.12.2"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "dhls"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=dhls",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-11-18T15:53:05.558721",
+  "status": "FAILED",
+  "stop_time": "2025-11-18T15:53:16.074398"
+}

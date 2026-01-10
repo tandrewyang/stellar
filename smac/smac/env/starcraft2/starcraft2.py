@@ -50,7 +50,6 @@ actions = {
     "heal": 386,  # Unit
     "NydusCanalLoad": 1437,
     "NydusCanalUnload": 1438,
-    "Hallucination": 158,
 }
 
 
@@ -201,7 +200,6 @@ class StarCraft2Env(MultiAgentEnv):
         map_params = get_map_params(self.map_name)
         self.n_agents = map_params["n_agents"]
         self.n_enemies = map_params["n_enemies"]
-        # self.n_agents_h = 0
         self.episode_limit = map_params["limit"]
         self._move_amount = move_amount
         self._step_mul = step_mul
@@ -263,10 +261,6 @@ class StarCraft2Env(MultiAgentEnv):
             self.n_enemies * self.reward_death_value + self.reward_win
         )
 
-        if self.map_type == "wzsy":
-            self.n_actions += 1
-            self.n_agents_max = map_params["n_agents_max"]
-
         # create lists containing the names of attributes returned in states
         self.ally_state_attr_names = [
             "health",
@@ -291,7 +285,6 @@ class StarCraft2Env(MultiAgentEnv):
         self.agents = {}
         self.enemies = {}
         self.load = {}
-        # self.agents_h = {}
         self._episode_count = 0
         self._episode_steps = 0
         self._total_steps = 0
@@ -306,17 +299,12 @@ class StarCraft2Env(MultiAgentEnv):
         self.previous_ally_units = None
         self.previous_enemy_units = None
         self.last_action = np.zeros((self.n_agents, self.n_actions))
-        if self.map_type == "wzsy":
-            self.last_action = np.zeros((self.n_agents_max, self.n_actions))
-            self.death_tracker_ally = np.zeros(self.n_agents_max)
         self._min_unit_type = 0
         self.marine_id = self.marauder_id = self.medivac_id = 0
         self.hydralisk_id = self.zergling_id = self.baneling_id = 0
         self.stalker_id = self.colossus_id = self.zealot_id = 0
         # self.nexus_id = self.warpgate_id = 0
         self.roach_id = self.hatchery_id = self.nydusNetwork_id = self.nydusCanal_id = 0
-        self.sentry_id = 0
-        self.n_agents_hal_temp = 0
         self.max_distance_x = 0
         self.max_distance_y = 0
         self.map_x = 0
@@ -335,40 +323,7 @@ class StarCraft2Env(MultiAgentEnv):
     def _launch(self):
         """Launch the StarCraft II game."""
         self._run_config = run_configs.get(version=self.game_version)
-        
-        # Try to get map from pysc2 maps, if not found, try tactics maps
-        try:
-            _map = maps.get(self.map_name)
-        except Exception:
-            # If map not found in pysc2, try to find it as tactics map
-            import os
-            from smac.env.sc2_tactics.maps import MAP_NAME_ALIASES
-            
-            # Resolve map name alias
-            actual_map_name = MAP_NAME_ALIASES.get(self.map_name, self.map_name)
-            if not actual_map_name.endswith("_te"):
-                actual_map_name = f"{actual_map_name}_te"
-            
-            # Try to find map file in StarCraftII/Maps directory
-            sc2_path = os.environ.get("SC2PATH", "/share/project/ytz/StarCraftII")
-            map_path = os.path.join(sc2_path, "Maps", f"{actual_map_name}.SC2Map")
-            
-            if os.path.exists(map_path):
-                # Create a map-like object with path attribute
-                class MapObj:
-                    def __init__(self, path):
-                        self.path = path
-                _map = MapObj(map_path)
-            else:
-                # Try without _te suffix
-                map_path = os.path.join(sc2_path, "Maps", f"{self.map_name}.SC2Map")
-                if os.path.exists(map_path):
-                    class MapObj:
-                        def __init__(self, path):
-                            self.path = path
-                    _map = MapObj(map_path)
-                else:
-                    raise Exception(f"Map file not found: {self.map_name} (tried {actual_map_name}.SC2Map and {self.map_name}.SC2Map)")
+        _map = maps.get(self.map_name)
 
         # Setting up the interface
         interface_options = sc_pb.InterfaceOptions(raw=True, score=False)
@@ -480,9 +435,6 @@ class StarCraft2Env(MultiAgentEnv):
         self.defeat_counted = False
 
         self.last_action = np.zeros((self.n_agents, self.n_actions))
-        if self.map_type == "wzsy":
-            self.last_action = np.zeros((self.n_agents_max, self.n_actions))
-            self.death_tracker_ally = np.zeros(self.n_agents_max)
 
         if self.heuristic_ai:
             self.heuristic_targets = [None] * self.n_agents
@@ -567,7 +519,7 @@ class StarCraft2Env(MultiAgentEnv):
         # count units that are still alive
         dead_allies, dead_enemies = 0, 0
         for _al_id, al_unit in self.agents.items():
-            if al_unit != None and al_unit.health == 0:
+            if al_unit.health == 0:
                 dead_allies += 1
         for _e_id, e_unit in self.enemies.items():
             if e_unit.health == 0:
@@ -624,8 +576,6 @@ class StarCraft2Env(MultiAgentEnv):
         ), "Agent {} cannot perform action {}".format(a_id, action)
 
         unit = self.get_unit_by_id(a_id)
-        if unit == None:
-            return None
         tag = unit.tag
         x = unit.pos.x
         y = unit.pos.y
@@ -732,17 +682,6 @@ class StarCraft2Env(MultiAgentEnv):
                 queue_command=False,
             )
             # self.load = {}
-
-        elif self.map_type == "wzsy" and action == 6:
-            if self.n_agents <= self.n_agents_max - 2 - self.n_agents_hal_temp:
-                cmd = r_pb.ActionRawUnitCommand(
-                    ability_id=actions["Hallucination"],
-                    unit_tags=[tag],
-                    queue_command=False,
-                )
-                self.n_agents_hal_temp += 2
-            else:
-                return None
 
         else:
             # attack/heal units that are in range
@@ -910,16 +849,12 @@ class StarCraft2Env(MultiAgentEnv):
 
         # update deaths
         for al_id, al_unit in self.agents.items():
-            if al_unit != None and not self.death_tracker_ally[al_id]:
+            if not self.death_tracker_ally[al_id]:
                 # did not die so far
-                prev_health = 0
-                if self.previous_ally_units[al_id] == None:
-                    prev_health = al_unit.health + al_unit.shield
-                else:
-                    prev_health = (
-                        self.previous_ally_units[al_id].health
-                        + self.previous_ally_units[al_id].shield
-                    )
+                prev_health = (
+                    self.previous_ally_units[al_id].health
+                    + self.previous_ally_units[al_id].shield
+                )
                 if al_unit.health == 0:
                     # just died
                     self.death_tracker_ally[al_id] = 1
@@ -1013,8 +948,6 @@ class StarCraft2Env(MultiAgentEnv):
             return 200  # Protoss's Pylon
         if unit.unit_type == 61:
             return 450  # Protoss's Assimilator
-        if unit.unit_type == self.sentry_id:
-            return 40   # Protoss's Sentry
 
     def can_move(self, unit, direction):
         """Whether a unit can move in a given direction."""
@@ -1119,7 +1052,7 @@ class StarCraft2Env(MultiAgentEnv):
         ally_feats = np.zeros(ally_feats_dim, dtype=np.float32)
         own_feats = np.zeros(own_feats_dim, dtype=np.float32)
 
-        if unit != None and unit.health > 0:  # otherwise dead, return all zeros
+        if unit.health > 0:  # otherwise dead, return all zeros
             x = unit.pos.x
             y = unit.pos.y
             sight_range = self.unit_sight_range(agent_id)
@@ -1142,8 +1075,6 @@ class StarCraft2Env(MultiAgentEnv):
 
             # Enemy features
             for e_id, e_unit in self.enemies.items():
-                if e_unit is None:
-                    continue
                 e_x = e_unit.pos.x
                 e_y = e_unit.pos.y
                 dist = self.distance(x, y, e_x, e_y)
@@ -1187,8 +1118,6 @@ class StarCraft2Env(MultiAgentEnv):
             for i, al_id in enumerate(al_ids):
 
                 al_unit = self.get_unit_by_id(al_id)
-                if al_unit is None:
-                    continue
                 al_x = al_unit.pos.x
                 al_y = al_unit.pos.y
                 dist = self.distance(x, y, al_x, al_y)
@@ -1269,10 +1198,7 @@ class StarCraft2Env(MultiAgentEnv):
         NOTE: Agents should have access only to their local observations
         during decentralised execution.
         """
-        if self.map_type == "wzsy":
-            agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents_max)]
-        else:
-            agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents)]
+        agents_obs = [self.get_obs_agent(i) for i in range(self.n_agents)]
         return agents_obs
 
     def get_state(self):
@@ -1330,14 +1256,11 @@ class StarCraft2Env(MultiAgentEnv):
         ally_state = np.zeros((self.n_agents, nf_al))
         enemy_state = np.zeros((self.n_enemies, nf_en))
 
-        if self.map_type == "wzsy":
-            ally_state = np.zeros((self.n_agents_max, nf_al))
-
         center_x = self.map_x / 2
         center_y = self.map_y / 2
 
         for al_id, al_unit in self.agents.items():
-            if al_unit != None and al_unit.health > 0:
+            if al_unit.health > 0:
                 x = al_unit.pos.x
                 y = al_unit.pos.y
                 max_cd = self.unit_max_cooldown(al_unit)
@@ -1372,8 +1295,6 @@ class StarCraft2Env(MultiAgentEnv):
                     ally_state[al_id, type_id - self.unit_type_bits] = 1
 
         for e_id, e_unit in self.enemies.items():
-            if e_unit is None:
-                continue
             if e_unit.health > 0:
                 x = e_unit.pos.x
                 y = e_unit.pos.y
@@ -1428,8 +1349,6 @@ class StarCraft2Env(MultiAgentEnv):
         if self.obs_last_action:
             nf_al += self.n_actions
 
-        if self.map_type == "wzsy":
-            return self.n_agents_max - 1, nf_al
         return self.n_agents - 1, nf_al
 
     def get_obs_own_feats_size(self):
@@ -1480,16 +1399,10 @@ class StarCraft2Env(MultiAgentEnv):
         enemy_state = self.n_enemies * nf_en
         ally_state = self.n_agents * nf_al
 
-        if self.map_type == "wzsy":
-            ally_state = self.n_agents_max * nf_al
-
         size = enemy_state + ally_state
 
         if self.state_last_action:
-            if self.map_type == "wzsy":
-                size += self.n_agents_max * self.n_actions
-            else:
-                size += self.n_agents * self.n_actions
+            size += self.n_agents * self.n_actions
         if self.state_timestep_number:
             size += 1
 
@@ -1514,8 +1427,6 @@ class StarCraft2Env(MultiAgentEnv):
 
                 # Enemies
                 for e_id, e_unit in self.enemies.items():
-                    if e_unit is None:
-                        continue
                     e_x = e_unit.pos.x
                     e_y = e_unit.pos.y
                     dist = self.distance(x, y, e_x, e_y)
@@ -1530,8 +1441,6 @@ class StarCraft2Env(MultiAgentEnv):
                 ]
                 for _, al_id in enumerate(al_ids):
                     al_unit = self.get_unit_by_id(al_id)
-                    if al_unit is None:
-                        continue
                     al_x = al_unit.pos.x
                     al_y = al_unit.pos.y
                     dist = self.distance(x, y, al_x, al_y)
@@ -1546,9 +1455,6 @@ class StarCraft2Env(MultiAgentEnv):
         """Returns the ID of unit type in the given scenario."""
         if ally:  # use new SC2 unit types
             type_id = unit.unit_type - self._min_unit_type
-            if self.map_type == "wzsy" and unit.unit_type == 74:
-                type_id = 2
-
         else:  # use default SC2 unit types
             if self.map_type == "stalkers_and_zealots":
                 # id(Stalker) = 74, id(Zealot) = 73
@@ -1604,13 +1510,6 @@ class StarCraft2Env(MultiAgentEnv):
                     type_id = 1
                 elif unit.unit_type == 18:
                     type_id = 2
-            elif self.map_type == "wzsy":
-                if unit.unit_type == 74:
-                    type_id = 0
-                elif unit.unit_type == 73:
-                    type_id = 1
-                elif unit.unit_type == 59:
-                    type_id = 2
 
         return type_id
 
@@ -1618,7 +1517,7 @@ class StarCraft2Env(MultiAgentEnv):
         """Returns the available actions for agent_id."""
         unit = self.get_unit_by_id(agent_id)
 
-        if unit != None and unit.health > 0:
+        if unit.health > 0:
             # cannot choose no-op when alive
             avail_actions = [0] * self.n_actions
 
@@ -1656,14 +1555,6 @@ class StarCraft2Env(MultiAgentEnv):
             if self.can_move(unit, Direction.WEST):
                 avail_actions[5] = 1
 
-            if self.map_type == "wzsy":
-                if (unit.unit_type == self.sentry_id and
-                    unit.energy >= 100 and
-                    self.n_agents <= self.n_agents_max - 2):
-                    avail_actions[6] = 1
-                else:
-                    avail_actions[6] = 0
-
             # Can attack only alive units that are alive in the shooting range
             shoot_range = self.unit_shoot_range(agent_id)
             target_items = self.enemies.items()
@@ -1695,12 +1586,6 @@ class StarCraft2Env(MultiAgentEnv):
         for agent_id in range(self.n_agents):
             avail_agent = self.get_avail_agent_actions(agent_id)
             avail_actions.append(avail_agent)
-        
-        if self.map_type == "wzsy":
-            for agent_id in range(self.n_agents, self.n_agents_max):
-                avail_agent = self.get_avail_agent_actions(agent_id)
-                avail_actions.append(avail_agent)
-
         return avail_actions
 
     def close(self):
@@ -1728,7 +1613,7 @@ class StarCraft2Env(MultiAgentEnv):
     def _kill_all_units(self):
         """Kill all units on the map."""
         units_alive = [
-            unit.tag for unit in self.agents.values() if unit != None and unit.health > 0
+            unit.tag for unit in self.agents.values() if unit.health > 0
         ] + [unit.tag for unit in self.enemies.values() if unit.health > 0] + [
             unit.tag for unit in self.load.values() if unit.health > 0
         ]
@@ -1783,11 +1668,6 @@ class StarCraft2Env(MultiAgentEnv):
                         )
                     )
 
-            if self.map_type == "wzsy":
-                self.n_agents = get_map_params(self.map_name)["n_agents"]
-                for i in range(self.n_agents, self.n_agents_max):
-                    self.agents[i] = None
-
             for unit in self._obs.observation.raw_data.units:
                 if unit.owner == 2:
                     self.enemies[len(self.enemies)] = unit
@@ -1796,15 +1676,12 @@ class StarCraft2Env(MultiAgentEnv):
 
             if self._episode_count == 0:
                 min_unit_type = min(
-                    unit.unit_type for unit in self.agents.values() if unit is not None
+                    unit.unit_type for unit in self.agents.values()
                 )
                 self._init_ally_unit_types(min_unit_type)
 
             all_agents_created = len(self.agents) == self.n_agents
             all_enemies_created = len(self.enemies) == self.n_enemies
-
-            if self.map_type == "wzsy":
-                all_agents_created = len(self.agents) == self.n_agents_max
 
             self._unit_types = [
                 unit.unit_type for unit in ally_units_sorted
@@ -1846,20 +1723,18 @@ class StarCraft2Env(MultiAgentEnv):
 
         # Check if roach is unloaded in dhls
         self.clean_load()
-        self.update_hallucination()
 
         for al_id, al_unit in self.agents.items():
             updated = False
             for unit in self._obs.observation.raw_data.units:
-                if al_unit != None and al_unit.tag == unit.tag:
+                if al_unit.tag == unit.tag:
                     self.agents[al_id] = unit
                     updated = True
                     n_ally_alive += 1
                     break
-            if self.map_type == "dhls":
-                updated = self.check_load(al_unit.tag, updated)
+            updated = self.check_load(al_unit.tag, updated)
 
-            if not updated and al_unit != None:  # dead
+            if not updated:  # dead
                 al_unit.health = 0
 
         for e_id, e_unit in self.enemies.items():
@@ -1930,9 +1805,6 @@ class StarCraft2Env(MultiAgentEnv):
             self.nydusNetwork_id = min_unit_type + 1
             self.nydusCanal_id = min_unit_type + 2
             self.roach_id = min_unit_type + 3
-        elif self.map_type == "wzsy":
-            self.sentry_id = min_unit_type
-            self.stalker_id = min_unit_type + 1
 
     def only_medivac_left(self, ally):
         """Check if only Medivac units are left."""
@@ -1977,17 +1849,14 @@ class StarCraft2Env(MultiAgentEnv):
         env_info = super().get_env_info()
         env_info["agent_features"] = self.ally_state_attr_names
         env_info["enemy_features"] = self.enemy_state_attr_names
-        if self.map_type == "wzsy":
-            env_info["n_agents"] = self.n_agents_max
         return env_info
 
     def check_structure(self, ally = True):
         """Check if the enemy's Nexus unit is killed."""
         if self.map_type == "sdjx":
-            if ally == False:
-                for e in self.enemies.values():
-                    if e.unit_type == 59 and e.health <= 0:
-                        return True
+            for e in self.enemies.values():
+                if e.unit_type == 59 and e.health <= 0:
+                    return True
         
         if self.map_type == "dhls":
             if ally == True:
@@ -2000,22 +1869,15 @@ class StarCraft2Env(MultiAgentEnv):
                     if e.unit_type == 18 and e.health <= 0:
                         return True
         
-        if self.map_type == "wzsy":
-            if ally == False:
-                for e in self.enemies.values():
-                    if e.unit_type == 59 and e.health <= 0:
-                        return True
-                    
         return False
 
     def check_unit_killed(self, ally = True):
         """Check if all the enemy's units are killed, except buildings"""
         if self.map_type == "sdjx":
-            if ally == False:
-                for e in self.enemies.values():
-                    if e.unit_type != 59 and e.unit_type != 133 and e.unit_type != 61 and e.unit_type != 60 and e.health > 0:
-                        return False
-                return True
+            for e in self.enemies.values():
+                if e.unit_type != 59 and e.unit_type != 133 and e.unit_type != 61 and e.unit_type != 60 and e.health > 0:
+                    return False
+            return True
         
         if self.map_type == "dhls":
             if ally == False:
@@ -2027,18 +1889,6 @@ class StarCraft2Env(MultiAgentEnv):
             if ally == True:
                 for a in self.agents.values():
                     if a.unit_type == self.roach_id and a.health > 0:
-                        return False
-                return True
-
-        if self.map_type == "wzsy":
-            if ally == False:
-                for e in self.enemies.values():
-                    if e.unit_type != 59 and e.health > 0:
-                        return False
-                return True
-            if ally == True:
-                for a in self.agents.values():
-                    if a != None and a.health > 0:
                         return False
                 return True
 
@@ -2073,19 +1923,3 @@ class StarCraft2Env(MultiAgentEnv):
     
     def check_end_code(self, ally):
         return self.check_structure(ally) or self.check_unit_killed(ally)
-    
-    def update_hallucination(self):
-        if self.map_type != "wzsy":
-            return
-        self.n_agents_hal_temp = 0
-        for unit in self._obs.observation.raw_data.units:
-            if unit.owner == 1:
-                find_same = False
-                for al_unit in self.agents.values():
-                    if al_unit != None and unit.tag == al_unit.tag:
-                        find_same = True
-                        break
-                if find_same == False:
-                    self.agents[self.n_agents] = unit
-                    self.n_agents += 1
-        return

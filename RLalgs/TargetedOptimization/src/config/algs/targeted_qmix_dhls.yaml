@@ -1,0 +1,79 @@
+# 针对dhls地图的优化配置
+# dhls特点: 16 agents vs 11 enemies, 200步, 有NydusCanal（虫洞）机制
+# 优化方向: 机制感知
+
+action_selector: "epsilon_greedy"
+epsilon_start: 0.995
+epsilon_finish: 0.05
+epsilon_anneal_time: 120000  # 更长的探索时间（16 vs 11需要更多探索）
+
+runner: "episode"
+batch_size_run: 1
+buffer_size: 5000
+
+batch_size: 128
+
+critic_mac: "cate_broadcast_comm_mac_full"
+critic_agent: "rnn_agent_n"
+
+comm: True
+comm_embed_dim: 3
+comm_method: "information_bottleneck_full"
+c_beta: 1.
+comm_beta: 0.001
+comm_entropy_beta: 1e-6
+gate_loss_beta: 0.00001
+only_downstream: False
+use_IB: True
+is_print: False
+
+target_update_interval: 200
+t_max: 2005000
+
+mac: "basic_mac_logits"
+agent: "rnn"
+agent_output_type: "q"
+learner: "reward_shaping_learner"
+double_q: True
+mixer: "qmix"
+mixing_embed_dim: 64
+hypernet_layers: 2
+hypernet_embed: 128
+
+# 针对dhls的奖励塑形（重新设计：虫洞机制+分兵拖延+基地攻击策略）
+# 战术核心：利用虫洞机制快速传送，分兵拖延敌方军队，主队趁机攻击敌方基地
+# 16 vs 11，200步，Z vs T，有NydusCanal（虫洞）机制
+# 新设计：更强调虫洞使用、基地攻击和战术协调
+reward_shaping_enabled: True
+reward_shaping_type: "potential_based"  # 代码会根据map_name自动识别
+reward_shaping_weight: 0.6  # 增加塑形权重（从0.5增加到0.6，更强的诱导性）
+reward_shaping_decay: 0.9998  # 更慢的衰减（保持塑形效果更久）
+survival_reward_weight: 3.5  # 增加生存奖励权重（从3.0增加到3.5）
+delay_intercept_weight: 5.0  # 大幅增加拖延拦截奖励权重（从4.0增加到5.0，包含虫洞使用）
+base_attack_weight: 6.0  # 大幅增加基地攻击奖励权重（从5.0增加到6.0）
+tactical_coordination_weight: 5.5  # 大幅增加战术协调奖励权重（从4.5增加到5.5）
+time_window_weight: 5.0  # 大幅增加时间差奖励权重（从4.0增加到5.0）
+division_reward_weight: 4.0  # 分兵奖励权重（从3.5增加到4.0）
+enemy_kill_weight: 4.5  # 敌方单位消灭奖励权重（新增）
+nydus_usage_weight: 3.5  # 虫洞使用奖励权重（新增）
+damage_reward_factor: 2.0  # 伤害奖励放大因子（从1.5增加到2.0，200%）
+
+central_loss: 1
+qmix_loss: 1
+w: 0.5
+hysteretic_qmix: True
+
+central_mixing_embed_dim: 256
+central_action_embed: 1
+central_mac: "basic_central_mac"
+central_agent: "central_rnn"
+central_rnn_hidden_dim: 64
+central_mixer: "ff"
+td_lambda: 0.6
+lr: 0.0012  # 稍大的学习率（16 vs 11需要更快学习）
+
+alpha_lr: 3e-4
+alpha_init: -0.07
+
+p: 0.5
+name: "targeted_qmix_dhls_env=4_adam_td_lambda"

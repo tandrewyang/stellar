@@ -1,0 +1,163 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "pyyaml==6.0.3",
+      "sacred==0.8.7",
+      "torch==2.1.2+cu118"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      },
+      {
+        "commit": "373581337fe5abfff4e5bcf9b2b2e09a39384122",
+        "dirty": true,
+        "url": "https://github.com/tandrewyang/stellar"
+      }
+    ],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_ec5789def5fb3c960c6d4be79feced67.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_a0959e544e275cedcb933293d93b61e8.py"
+      ]
+    ]
+  },
+  "fail_trace": [
+    "Traceback (most recent call last):\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/serialization.py\", line 619, in save\n    _save(obj, opened_zipfile, pickle_module, pickle_protocol, _disable_byteorder_record)\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/serialization.py\", line 853, in _save\n    zip_file.write_record(name, storage.data_ptr(), num_bytes)\n",
+    "RuntimeError: [enforce fail at inline_container.cc:588] . PytorchStreamWriter failed writing file data/10: file write failed\n",
+    "\nDuring handling of the above exception, another exception occurred:\n\n",
+    "Traceback (most recent call last):\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/config/captured_function.py\", line 42, in captured_function\n    result = wrapped(*args, **kwargs)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/main.py\", line 53, in my_main\n    run_REGISTRY[_config['run']](_run, config, _log)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/run/run.py\", line 55, in run\n    run_sequential(args=args, logger=logger)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/run/run.py\", line 224, in run_sequential\n    learner.save_models(save_path)\n",
+    "  File \"/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/TargetedOptimization/src/learners/max_q_learner.py\", line 362, in save_models\n    th.save(self.mixer.state_dict(), \"{}/mixer.th\".format(path))\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/serialization.py\", line 618, in save\n    with _open_zipfile_writer(f) as opened_zipfile:\n",
+    "  File \"/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/torch/serialization.py\", line 466, in __exit__\n    self.file_like.write_end_of_file()\n",
+    "RuntimeError: [enforce fail at inline_container.cc:424] . unexpected pos 568384 vs 568336\n"
+  ],
+  "heartbeat": "2025-12-11T21:41:28.527341",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) Platinum 8468",
+    "gpus": {
+      "driver_version": "535.161.08",
+      "gpus": [
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        },
+        {
+          "model": "NVIDIA H100 80GB HBM3",
+          "persistence_mode": true,
+          "total_memory": 81559
+        }
+      ]
+    },
+    "hostname": "job-fcea379b-ab9f-4368-a257-c64368c4bfa2-master-0",
+    "os": [
+      "Linux",
+      "Linux-5.15.0-105-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.19"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "batch_size_run": 1,
+      "env_args": {
+        "map_name": "yqgz"
+      },
+      "save_model": true,
+      "save_model_interval": 500000,
+      "seed": 42,
+      "t_max": 2005000,
+      "use_tensorboard": true
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "env_args.map_name=yqgz",
+        "seed=42",
+        "t_max=2005000",
+        "batch_size_run=1",
+        "use_tensorboard=True",
+        "save_model=True",
+        "save_model_interval=500000"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-12-11T06:10:21.848521",
+  "status": "FAILED",
+  "stop_time": "2025-12-11T21:41:32.267009"
+}

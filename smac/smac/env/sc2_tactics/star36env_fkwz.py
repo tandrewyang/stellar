@@ -341,6 +341,9 @@ class SC2TacticsFKWZEnv(te.SC2TacticsEnv):
         center_y = self.map_y / 2
 
         for al_id, al_unit in self.agents.items():
+            # 添加边界检查，防止索引越界
+            if al_id >= self.n_agents_max or al_id < 0:
+                continue
             if al_unit != None and al_unit.health > 0:
                 x = al_unit.pos.x
                 y = al_unit.pos.y
@@ -372,6 +375,9 @@ class SC2TacticsFKWZEnv(te.SC2TacticsEnv):
                     ally_state[al_id, type_id - self.unit_type_bits] = 1
 
         for e_id, e_unit in self.enemies.items():
+            # 添加边界检查，防止索引越界
+            if e_id >= self.n_enemies_max or e_id < 0:
+                continue
             if e_unit != None and e_unit.health > 0:
                 x = e_unit.pos.x
                 y = e_unit.pos.y

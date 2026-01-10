@@ -1,0 +1,189 @@
+/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/dependencies.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[DEBUG 13:36:34] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.cmd Popen(['git', 'version'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.util sys.platform='linux', git_executable='git'
+[DEBUG 13:36:34] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.util sys.platform='linux', git_executable='git'
+[DEBUG 13:36:34] git.cmd Popen(['git', 'diff', '--cached', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.cmd Popen(['git', 'diff', '--abbrev=40', '--full-index', '--raw'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=None, shell=False, universal_newlines=False)
+[DEBUG 13:36:34] git.cmd Popen(['git', 'cat-file', '--batch-check'], cwd=/share/project/ytz/RLproject/StarCraft2_HLSMAC, stdin=<valid stream>, shell=False, universal_newlines=False)
+[INFO 13:36:34] root Saving to FileStorageObserver in /share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/results/sacred/pzyy/ow_qmix_env=4_adam_td_lambda.
+[DEBUG 13:36:36] pymarl Using capture mode "fd"
+[INFO 13:36:36] pymarl Running command 'my_main'
+[INFO 13:36:36] pymarl Started run with ID "5"
+[DEBUG 13:36:36] pymarl Starting Heartbeat
+[DEBUG 13:36:36] my_main Started
+[INFO 13:36:36] my_main Experiment Parameters:
+[INFO 13:36:36] my_main 
+
+{   'action_selector': 'epsilon_greedy',
+    'agent': 'rnn',
+    'agent_output_type': 'q',
+    'alpha_init': -0.07,
+    'alpha_lr': '3e-4',
+    'batch_size': 128,
+    'batch_size_run': 1,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'c_beta': 1.0,
+    'central_action_embed': 1,
+    'central_agent': 'central_rnn',
+    'central_loss': 1,
+    'central_mac': 'basic_central_mac',
+    'central_mixer': 'ff',
+    'central_mixing_embed_dim': 256,
+    'central_rnn_hidden_dim': 64,
+    'checkpoint_path': '',
+    'comm': True,
+    'comm_beta': 0.001,
+    'comm_beta_end_decay': 50000000,
+    'comm_beta_start_decay': 20000000,
+    'comm_beta_target': '1e-2',
+    'comm_embed_dim': 3,
+    'comm_entropy_beta': '1e-6',
+    'comm_entropy_beta_end_decay': 50000000,
+    'comm_entropy_beta_start_decay': 20000000,
+    'comm_entropy_beta_target': '1e-4',
+    'comm_method': 'information_bottleneck_full',
+    'critic_agent': 'rnn_agent_n',
+    'critic_lr': 0.0005,
+    'critic_mac': 'cate_broadcast_comm_mac_full',
+    'cut_mu_rank_thres': 80.0,
+    'cut_mu_thres': 1.0,
+    'double_q': True,
+    'env': 'sc2_tactics',
+    'env_args': {   'continuing_episode': False,
+                    'debug': False,
+                    'difficulty': '7',
+                    'game_version': None,
+                    'heuristic_ai': False,
+                    'heuristic_rest': False,
+                    'map_name': 'pzyy',
+                    'move_amount': 2,
+                    'obs_all_health': True,
+                    'obs_instead_of_state': False,
+                    'obs_last_action': False,
+                    'obs_own_health': True,
+                    'obs_pathing_grid': True,
+                    'obs_terrain_height': True,
+                    'obs_timestep_number': False,
+                    'replay_dir': '',
+                    'replay_prefix': '',
+                    'reward_death_value': 10,
+                    'reward_defeat': 0,
+                    'reward_negative_scale': 0.5,
+                    'reward_only_positive': False,
+                    'reward_scale': True,
+                    'reward_scale_rate': 20,
+                    'reward_sparse': False,
+                    'reward_win': 200,
+                    'seed': 42,
+                    'state_last_action': True,
+                    'state_timestep_number': False,
+                    'step_mul': 8},
+    'epsilon_anneal_time': 100000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 0.995,
+    'evaluate': False,
+    'gamma': 0.99,
+    'gate_loss_beta': 1e-05,
+    'grad_norm_clip': 10,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'hysteretic_qmix': True,
+    'is_comm_beta_decay': False,
+    'is_comm_entropy_beta_decay': False,
+    'is_cur_mu': False,
+    'is_print': False,
+    'is_rank_cut_mu': False,
+    'label': 'default_label',
+    'learner': 'max_q_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.001,
+    'mac': 'basic_mac_logits',
+    'mixer': 'qmix',
+    'mixing_embed_dim': 32,
+    'name': 'ow_qmix_env=4_adam_td_lambda',
+    'obs_agent_id': True,
+    'obs_last_action': True,
+    'only_downstream': False,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'p': 0.5,
+    'qmix_loss': 1,
+    'repeat_id': 1,
+    'rnn_hidden_dim': 64,
+    'run': 'default',
+    'runner': 'episode',
+    'runner_log_interval': 10000,
+    'save_model': True,
+    'save_model_interval': 500000,
+    'save_replay': False,
+    'seed': 42,
+    't_max': 2005000,
+    'target_update_interval': 200,
+    'td_lambda': 0.6,
+    'test_greedy': True,
+    'test_interval': 10000,
+    'test_nepisode': 32,
+    'use_IB': True,
+    'use_cuda': True,
+    'use_tensorboard': True,
+    'w': 0.5}
+
+--- PZYY Env Loaded. Move Amount: 4 ---
+174
+Mixer Size: 
+279.875K
+namespace(runner='episode', mac='basic_mac_logits', env='sc2_tactics', env_args={'continuing_episode': False, 'difficulty': '7', 'game_version': None, 'map_name': 'pzyy', 'move_amount': 2, 'obs_all_health': True, 'obs_instead_of_state': False, 'obs_last_action': False, 'obs_own_health': True, 'obs_pathing_grid': True, 'obs_terrain_height': True, 'obs_timestep_number': False, 'reward_death_value': 10, 'reward_defeat': 0, 'reward_negative_scale': 0.5, 'reward_only_positive': False, 'reward_scale': True, 'reward_scale_rate': 20, 'reward_sparse': False, 'reward_win': 200, 'replay_dir': '', 'replay_prefix': '', 'state_last_action': True, 'state_timestep_number': False, 'step_mul': 8, 'seed': 42, 'heuristic_ai': False, 'heuristic_rest': False, 'debug': False}, batch_size_run=1, test_nepisode=32, test_interval=10000, test_greedy=True, log_interval=10000, runner_log_interval=10000, learner_log_interval=10000, t_max=2005000, use_cuda=True, buffer_cpu_only=True, use_tensorboard=True, save_model=True, save_model_interval=500000, checkpoint_path='', evaluate=False, load_step=0, save_replay=False, local_results_path='results', gamma=0.99, batch_size=128, buffer_size=5000, lr=0.001, critic_lr=0.0005, optim_alpha=0.99, optim_eps=1e-05, grad_norm_clip=10, agent='rnn', rnn_hidden_dim=64, obs_agent_id=True, obs_last_action=True, repeat_id=1, label='default_label', run='default', action_selector='epsilon_greedy', epsilon_start=0.995, epsilon_finish=0.05, epsilon_anneal_time=100000, critic_mac='cate_broadcast_comm_mac_full', critic_agent='rnn_agent_n', comm=True, comm_embed_dim=3, comm_method='information_bottleneck_full', c_beta=1.0, comm_beta=0.001, comm_entropy_beta='1e-6', gate_loss_beta=1e-05, only_downstream=False, use_IB=True, is_print=False, is_comm_beta_decay=False, comm_beta_start_decay=20000000, comm_beta_target='1e-2', comm_beta_end_decay=50000000, is_comm_entropy_beta_decay=False, comm_entropy_beta_start_decay=20000000, comm_entropy_beta_target='1e-4', comm_entropy_beta_end_decay=50000000, is_cur_mu=False, is_rank_cut_mu=False, cut_mu_thres=1.0, cut_mu_rank_thres=80.0, target_update_interval=200, agent_output_type='q', learner='max_q_learner', double_q=True, mixer='qmix', mixing_embed_dim=32, hypernet_layers=2, hypernet_embed=64, central_loss=1, qmix_loss=1, w=0.5, hysteretic_qmix=True, central_mixing_embed_dim=256, central_action_embed=1, central_mac='basic_central_mac', central_agent='central_rnn', central_rnn_hidden_dim=64, central_mixer='ff', td_lambda=0.6, alpha_lr='3e-4', alpha_init=-0.07, p=0.5, name='ow_qmix_env=4_adam_td_lambda', seed=42, device='cuda', unique_token='ow_qmix_env=4_adam_td_lambda__2026-01-09_13-36-36', n_agents=6, n_actions=15, state_shape=186, accumulated_episodes=None)
+[INFO 13:36:37] my_main Beginning training for 2005000 timesteps
+[INFO 13:36:37] absl Launching SC2: /share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64 -listen 127.0.0.1 -port 39819 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-b8zerqc7/
+[INFO 13:36:37] absl Connecting to: ws://127.0.0.1:39819/sc2api, attempt: 0, running: True
+Version: B75689 (SC2.4.10)
+Build: Aug 12 2019 17:16:57
+Command Line: '"/share/project/ytz/StarCraftII/Versions/Base75689/SC2_x64" -listen 127.0.0.1 -port 39819 -dataDir /share/project/ytz/StarCraftII/ -tempDir /tmp/sc-b8zerqc7/'
+Starting up...
+Startup Phase 1 complete
+[INFO 13:36:38] absl Connecting to: ws://127.0.0.1:39819/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:39819
+Startup Phase 3 complete. Ready for commands.
+[INFO 13:36:39] absl Connecting to: ws://127.0.0.1:39819/sc2api, attempt: 2, running: True
+ConnectHandler: Request from 127.0.0.1:33676 accepted
+ReadyHandler: 127.0.0.1:33676 ready
+/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/stdout_capturing.py:179: UserWarning: tee_stdout.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stdout.wait timeout. Forcibly terminating.")
+/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/sacred/stdout_capturing.py:185: UserWarning: tee_stderr.wait timeout. Forcibly terminating.
+  warnings.warn("tee_stderr.wait timeout. Forcibly terminating.")
+[DEBUG 13:36:41] pymarl Stopping Heartbeat
+[ERROR 13:36:41] pymarl Failed after 0:00:05!
+Traceback (most recent calls WITHOUT Sacred internals):
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/main.py", line 38, in my_main
+    run_REGISTRY[_config['run']](_run, config, _log)
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py", line 55, in run
+    run_sequential(args=args, logger=logger)
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/run/run.py", line 181, in run_sequential
+    episode_batch = runner.run(test_mode=False)
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py", line 49, in run
+    self.reset()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/RLalgs/dTAPE/src/runners/episode_runner.py", line 45, in reset
+    self.env.reset()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/star36env_pzyy.py", line 54, in reset
+    res = super().reset()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py", line 395, in reset
+    self._launch()
+  File "/share/project/ytz/RLproject/StarCraft2_HLSMAC/smac/smac/env/sc2_tactics/sc2_tactics_env.py", line 351, in _launch
+    map_data=self._run_config.map_data(_map.path),
+  File "/share/project/miniconda3/envs/py310_sc2/lib/python3.10/site-packages/pysc2/run_configs/lib.py", line 142, in map_data
+    raise ValueError(f"Map {map_name} not found in {self.data_dir}/Maps.")
+ValueError: Map Tactics_Maps/pzyy.SC2Map not found in /share/project/ytz/StarCraftII/Maps.
+
+[INFO 13:36:41] absl Shutdown gracefully.
+[INFO 13:36:41] absl Shutdown with return code: -15
