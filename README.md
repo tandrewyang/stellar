@@ -352,7 +352,5 @@ batch_size_run: 1
 如有问题，请参考：
 - HLSMAC GitHub: [待补充]
 - dTAPE GitHub: https://github.com/LxzGordon/TAPE/tree/main/deterministic
+- 如对地图扩展有疑问，请联系2300017748@stu.pku.edu.cn
 
-# stellar
-# stellar
-# stellar
