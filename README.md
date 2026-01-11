@@ -1,6 +1,7 @@
 # HLSMAC 多智能体强化学习训练框架 
 
 基于dTAPE算法在HLSMAC（High-Level Strategic Multi-Agent Challenge）12个地图上的训练和评测框架。
+
 有关地图扩展的部分，请参考`new_maps/readme.md`
 
 ## 项目结构
@@ -47,6 +48,11 @@ StarCraft2_HLSMAC/
 | wzsy | 无中生有 | Creating Something Out of Nothing | wzsy_te.SC2Map |
 | yqgz | 欲擒故纵 | Letting the Enemy Off in Order to Catch Him | yqgz_te.SC2Map |
 
+### 扩展地图
+| 地图ID | 中文名称 | 英文名称 | 地图文件 |
+|--------|---------|---------|---------|
+| pzyy | 抛砖引玉 | Tossing Out a Brick to Attract Jade | pzyy.SC2Map | 
+| ldtj | 李代桃僵 | Sacrifice the Plum Tree to Preserve the Peach Tree | ldtj.SC2Map |
 ## 环境配置
 
 ### 1. 安装StarCraft II
